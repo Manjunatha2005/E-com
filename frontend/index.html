@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MycoMart — Premium Mushrooms, Delivered Fresh</title>
+
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/home.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body id="top">
+
+  <!-- ========== HEADER ========== -->
+
+  <header class="header" data-header>
+
+      <div class="nav-wrapper">
+      <div class="container">
+
+        <h1 class="h1">
+          <a href="./index.html" class="logo">Myco<span class="span">Mart</span></a>
+        </h1>
+
+        <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <nav class="navbar" data-navbar>
+
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+
+          <ul class="navbar-list">
+            <li><a href="./index.html" class="navbar-link">Home</a></li>
+            <li><a href="./about.html" class="navbar-link">About</a></li>
+            <li><a href="./shop.html" class="navbar-link">Shop</a></li>
+            <li><a href="./blog.html" class="navbar-link">Blog</a></li>
+            <li><a href="./shop.html" class="navbar-link">Products</a></li>
+            <li><a href="./contact.html" class="navbar-link">Contact</a></li>
+          </ul>
+
+        </nav>
+
+        <div class="header-action">
+
+          <div class="search-wrapper" data-search-wrapper>
+            <button class="header-action-btn" aria-label="Toggle search" data-search-btn>
+              <ion-icon name="search-outline" class="search-icon"></ion-icon>
+              <ion-icon name="close-outline" class="close-icon"></ion-icon>
+            </button>
+
+            <div class="input-wrapper">
+              <input type="search" name="search" placeholder="Search mushrooms..." class="search-input">
+              <button class="search-submit" aria-label="Submit search">
+                <ion-icon name="search-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+
+          <button class="header-action-btn" aria-label="Open wishlist" data-panel-btn="wishlist">
+            <ion-icon name="heart-outline"></ion-icon>
+            <data class="btn-badge" value="2" data-wish-badge>02</data>
+          </button>
+
+          <button class="header-action-btn" aria-label="Open shopping cart" data-panel-btn="cart">
+            <ion-icon name="basket-outline"></ion-icon>
+            <data class="btn-badge" value="3" data-cart-badge>03</data>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+  </header>
+
+
+  <!-- ========== OVERLAY ========== -->
+  <div class="overlay" data-overlay></div>
+
+
+  <!-- ========== SIDE PANELS (WISHLIST + CART) ========== -->
+
+  <aside class="aside">
+
+    <!-- Wishlist -->
+    <div class="side-panel" data-side-panel="wishlist">
+      <button class="panel-close-btn" aria-label="Close wishlist" data-panel-btn="wishlist">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <ul class="panel-list">
+
+        <li class="panel-item">
+          <a href="./product-details.html" class="panel-card">
+            <figure class="item-banner">
+              <img src="https://placehold.co/46x46/f5ebe0/8B4513?text=🍄" width="46" height="46" loading="lazy" alt="Shiitake Pack">
+            </figure>
+            <div>
+              <p class="item-title">Shiitake Premium Pack</p>
+              <span class="item-value">$14.99 × 1</span>
+            </div>
+            <button class="item-close-btn" aria-label="Remove item">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </a>
+        </li>
+
+        <li class="panel-item">
+          <a href="./product-details.html" class="panel-card">
+            <figure class="item-banner">
+              <img src="https://placehold.co/46x46/f5ebe0/8B4513?text=🍄" width="46" height="46" loading="lazy" alt="Lion's Mane">
+            </figure>
+            <div>
+              <p class="item-title">Lion's Mane Whole</p>
+              <span class="item-value">$18.99 × 1</span>
+            </div>
+            <button class="item-close-btn" aria-label="Remove item">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </a>
+        </li>
+
+      </ul>
+
+      <div class="subtotal">
+        <p class="subtotal-text">Subtotal:</p>
+        <data class="subtotal-value" value="33.98">$33.98</data>
+      </div>
+
+      <a href="./wishlist.html" class="panel-btn">View Wishlist</a>
+    </div>
+
+    <!-- Cart -->
+    <div class="side-panel" data-side-panel="cart">
+      <button class="panel-close-btn" aria-label="Close cart" data-panel-btn="cart">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <ul class="panel-list">
+
+        <li class="panel-item">
+          <a href="./product-details.html" class="panel-card">
+            <figure class="item-banner">
+              <img src="https://placehold.co/46x46/f5ebe0/8B4513?text=🍄" width="46" height="46" loading="lazy" alt="Oyster Bundle">
+            </figure>
+            <div>
+              <p class="item-title">King Oyster Bundle</p>
+              <span class="item-value">$11.99 × 2</span>
+            </div>
+            <button class="item-close-btn" aria-label="Remove item">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </a>
+        </li>
+
+        <li class="panel-item">
+          <a href="./product-details.html" class="panel-card">
+            <figure class="item-banner">
+              <img src="https://placehold.co/46x46/f5ebe0/8B4513?text=🍄" width="46" height="46" loading="lazy" alt="Reishi Powder">
+            </figure>
+            <div>
+              <p class="item-title">Reishi Extract Powder</p>
+              <span class="item-value">$29.99 × 1</span>
+            </div>
+            <button class="item-close-btn" aria-label="Remove item">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </a>
+        </li>
+
+        <li class="panel-item">
+          <a href="./product-details.html" class="panel-card">
+            <figure class="item-banner">
+              <img src="https://placehold.co/46x46/f5ebe0/8B4513?text=🍄" width="46" height="46" loading="lazy" alt="Grow Kit">
+            </figure>
+            <div>
+              <p class="item-title">Shiitake Grow Kit</p>
+              <span class="item-value">$34.99 × 1</span>
+            </div>
+            <button class="item-close-btn" aria-label="Remove item">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </a>
+        </li>
+
+      </ul>
+
+      <div class="subtotal">
+        <p class="subtotal-text">Subtotal:</p>
+        <data class="subtotal-value" value="88.96">$88.96</data>
+      </div>
+
+      <a href="./cart.html" class="panel-btn">View Cart</a>
+    </div>
+
+  </aside>
+
+
+  <main>
+    <article>
+
+      <!-- ========== HERO ========== -->
+
+      <section class="hero">
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="hero-subtitle">25% off sitewide this week.</p>
+
+            <h2 class="h2 hero-title">
+              Nature's finest
+              <span class="span">mushrooms,</span>
+              delivered to your door.
+            </h2>
+
+            <p class="hero-text">
+              Hand-harvested, certified organic mushrooms — from gourmet culinary varieties to powerful medicinal
+              fungi. Farm-fresh quality you can taste.
+            </p>
+
+            <a href="./shop.html" class="btn btn-primary">
+              <span>Shop Now</span>
+              <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+            </a>
+
+          </div>
+
+          <!-- Hero banner: replace src with a real mushroom illustration -->
+          <figure class="hero-banner">
+            <div style="width:100%;height:400px;background:linear-gradient(135deg,var(--cream),var(--linen));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12rem;">
+              🍄
+            </div>
+          </figure>
+
+        </div>
+      </section>
+
+
+      <!-- ========== SERVICE ========== -->
+
+      <section class="section service">
+        <div class="container">
+
+          <ul class="service-list">
+
+            <li class="service-item">
+              <div class="item-icon">
+                <img src="https://placehold.co/40x40/ffffff/ffffff?text=" width="40" height="40" loading="lazy" alt="" aria-hidden="true">
+                <ion-icon name="car-outline" style="font-size:2.4rem;color:white;margin-top:-44px;position:relative;z-index:1;display:block;text-align:center;margin-inline:auto;"></ion-icon>
+              </div>
+              <div>
+                <p class="item-title h3">Free Shipping</p>
+                <p style="color:var(--white_50);font-size:1.3rem;">On all orders over $75</p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="item-icon" style="background:var(--white_25);padding:20px;border-radius:50%;max-width:max-content;">
+                <ion-icon name="shield-checkmark-outline" style="font-size:2.4rem;color:white;display:block;"></ion-icon>
+              </div>
+              <div>
+                <p class="item-title h3">Safe Payment</p>
+                <p style="color:var(--white_50);font-size:1.3rem;">100% secure checkout</p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="item-icon" style="background:var(--white_25);padding:20px;border-radius:50%;max-width:max-content;">
+                <ion-icon name="leaf-outline" style="font-size:2.4rem;color:white;display:block;"></ion-icon>
+              </div>
+              <div>
+                <p class="item-title h3">100% Organic</p>
+                <p style="color:var(--white_50);font-size:1.3rem;">Certified pesticide-free</p>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+      <!-- ========== OFFERS ========== -->
+
+      <section class="section offers">
+        <div class="container">
+
+          <ul class="offers-list has-scrollbar">
+
+            <li class="offers-item">
+              <div class="offers-card">
+                <figure class="card-banner">
+                  <div style="font-size:8rem;text-align:center;">🍄</div>
+                </figure>
+                <div class="card-content">
+                  <p class="card-subtitle">Up To 30% Off</p>
+                  <h3 class="h3 card-title">Gourmet mushroom variety packs.</h3>
+                  <a href="./shop.html" class="btn btn-primary">Shop Now</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="offers-item">
+              <div class="offers-card">
+                <figure class="card-banner">
+                  <div style="font-size:8rem;text-align:center;">🌿</div>
+                </figure>
+                <div class="card-content">
+                  <p class="card-subtitle">New Arrivals</p>
+                  <h3 class="h3 card-title">Medicinal & superfood mushrooms.</h3>
+                  <a href="./shop.html" class="btn btn-primary">Explore</a>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+      <!-- ========== PRODUCT ========== -->
+
+      <section class="section product">
+        <div class="container">
+
+          <p class="section-subtitle">-- Organic Mushrooms --</p>
+          <h2 class="h2 section-title">All Mushroom Products</h2>
+
+          <!-- Filter Tabs -->
+          <ul class="filter-list">
+
+            <li>
+              <button class="filter-btn active" data-filter-btn="all">
+                🍄 All Products
+              </button>
+            </li>
+
+            <li>
+              <button class="filter-btn" data-filter-btn="fresh">
+                🌱 Fresh Mushrooms
+              </button>
+            </li>
+
+            <li>
+              <button class="filter-btn" data-filter-btn="dried">
+                ☀️ Dried & Preserved
+              </button>
+            </li>
+
+            <li>
+              <button class="filter-btn" data-filter-btn="medicinal">
+                💊 Medicinal / Superfood
+              </button>
+            </li>
+
+            <li>
+              <button class="filter-btn" data-filter-btn="kits">
+                🧺 Grow Kits
+              </button>
+            </li>
+
+          </ul>
+
+          <!-- Product Grid -->
+          <ul class="grid-list">
+
+            <!-- Product 1 -->
+            <li data-category="fresh">
+              <div class="product-card">
+                <div class="card-banner">
+                  <div style="width:180px;height:180px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:7rem;margin:auto;">🍄</div>
+                  <div class="btn-wrapper">
+                    <button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+                      <ion-icon name="heart-outline"></ion-icon>
+                      <span class="tooltip">Add to Wishlist</span>
+                    </button>
+                    <button class="product-btn" aria-label="Quick view">
+                      <ion-icon name="eye-outline"></ion-icon>
+                      <span class="tooltip">Quick View</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star-half"></ion-icon>
+                </div>
+                <h3 class="h3 card-title"><a href="./product-details.html">Shiitake Premium Pack</a></h3>
+                <div class="price-wrapper">
+                  <del class="del">$18.00</del>
+                  <span class="price">$14.99</span>
+                </div>
+                <button class="btn btn-primary" data-add-cart>
+                  <span>Add to Cart</span>
+                  <ion-icon name="basket-outline"></ion-icon>
+                </button>
+              </div>
+            </li>
+
+            <!-- Product 2 -->
+            <li data-category="fresh">
+              <div class="product-card">
+                <div class="card-banner">
+                  <div style="width:180px;height:180px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:7rem;margin:auto;">🍄</div>
+                  <div class="btn-wrapper">
+                    <button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+                      <ion-icon name="heart-outline"></ion-icon>
+                      <span class="tooltip">Add to Wishlist</span>
+                    </button>
+                    <button class="product-btn" aria-label="Quick view">
+                      <ion-icon name="eye-outline"></ion-icon>
+                      <span class="tooltip">Quick View</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                </div>
+                <h3 class="h3 card-title"><a href="./product-details.html">King Oyster Bundle</a></h3>
+                <div class="price-wrapper">
+                  <del class="del">$15.00</del>
+                  <span class="price">$11.99</span>
+                </div>
+                <button class="btn btn-primary" data-add-cart>
+                  <span>Add to Cart</span>
+                  <ion-icon name="basket-outline"></ion-icon>
+                </button>
+              </div>
+            </li>
+
+            <!-- Product 3 -->
+            <li data-category="fresh">
+              <div class="product-card">
+                <div class="card-banner">
+                  <div style="width:180px;height:180px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:7rem;margin:auto;">🍄</div>
+                  <div class="btn-wrapper">
+                    <button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+                      <ion-icon name="heart-outline"></ion-icon>
+                      <span class="tooltip">Add to Wishlist</span>
+                    </button>
+                    <button class="product-btn" aria-label="Quick view">
+                      <ion-icon name="eye-outline"></ion-icon>
+                      <span class="tooltip">Quick View</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star-outline"></ion-icon>
+                </div>
+                <h3 class="h3 card-title"><a href="./product-details.html">Portobello Caps (6-pack)</a></h3>
+                <div class="price-wrapper">
+                  <del class="del">$12.00</del>
+                  <span class="price">$9.49</span>
+                </div>
+                <button class="btn btn-primary" data-add-cart>
+                  <span>Add to Cart</span>
+                  <ion-icon name="basket-outline"></ion-icon>
+                </button>
+              </div>
+            </li>
+
+            <!-- Product 4 -->
+            <li data-category="fresh">
+              <div class="product-card">
+                <div class="card-banner">
+                  <div style="width:180px;height:180px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:7rem;margin:auto;">🍄</div>
+                  <div class="btn-wrapper">
+                    <button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+                      <ion-icon name="heart-outline"></ion-icon>
+                      <span class="tooltip">Add to Wishlist</span>
+                    </button>
+                    <button class="product-btn" aria-label="Quick view">
+                      <ion-icon name="eye-outline"></ion-icon>
+                      <span class="tooltip">Quick View</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                </div>
+                <h3 class="h3 card-title"><a href="./product-details.html">Lion's Mane Whole</a></h3>
+                <div class="price-wrapper">
+                  <del class="del">$24.00</del>
+                  <span class="price">$18.99</span>
+                </div>
+                <button class="btn btn-primary" data-add-cart>
+                  <span>Add to Cart</span>
+                  <ion-icon name="basket-outline"></ion-icon>
+                </button>
+              </div>
+            </li>
+
+            <!-- Product 5 (dried) -->
+            <li data-category="dried">
+              <div class="product-card">
+                <div class="card-banner">
+                  <div style="width:180px;height:180px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:7rem;margin:auto;">🍄</div>
+                  <div class="btn-wrapper">
+                    <button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+                      <ion-icon name="heart-outline"></ion-icon>
+                      <span class="tooltip">Add to Wishlist</span>
+                    </button>
+                    <button class="product-btn" aria-label="Quick view">
+                      <ion-icon name="eye-outline"></ion-icon>
+                      <span class="tooltip">Quick View</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star-half"></ion-icon>
+                </div>
+                <h3 class="h3 card-title"><a href="./product-details.html">Dried Porcini (100g)</a></h3>
+                <div class="price-wrapper">
+                  <del class="del">$25.00</del>
+                  <span class="price">$19.99</span>
+                </div>
+                <button class="btn btn-primary" data-add-cart>
+                  <span>Add to Cart</span>
+                  <ion-icon name="basket-outline"></ion-icon>
+                </button>
+              </div>
+            </li>
+
+            <!-- Product 6 (medicinal) -->
+            <li data-category="medicinal">
+              <div class="product-card">
+                <div class="card-banner">
+                  <div style="width:180px;height:180px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:7rem;margin:auto;">🌿</div>
+                  <div class="btn-wrapper">
+                    <button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+                      <ion-icon name="heart-outline"></ion-icon>
+                      <span class="tooltip">Add to Wishlist</span>
+                    </button>
+                    <button class="product-btn" aria-label="Quick view">
+                      <ion-icon name="eye-outline"></ion-icon>
+                      <span class="tooltip">Quick View</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                </div>
+                <h3 class="h3 card-title"><a href="./product-details.html">Reishi Extract Powder</a></h3>
+                <div class="price-wrapper">
+                  <del class="del">$38.00</del>
+                  <span class="price">$29.99</span>
+                </div>
+                <button class="btn btn-primary" data-add-cart>
+                  <span>Add to Cart</span>
+                  <ion-icon name="basket-outline"></ion-icon>
+                </button>
+              </div>
+            </li>
+
+            <!-- Product 7 (medicinal) -->
+            <li data-category="medicinal">
+              <div class="product-card">
+                <div class="card-banner">
+                  <div style="width:180px;height:180px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:7rem;margin:auto;">🌿</div>
+                  <div class="btn-wrapper">
+                    <button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+                      <ion-icon name="heart-outline"></ion-icon>
+                      <span class="tooltip">Add to Wishlist</span>
+                    </button>
+                    <button class="product-btn" aria-label="Quick view">
+                      <ion-icon name="eye-outline"></ion-icon>
+                      <span class="tooltip">Quick View</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star-outline"></ion-icon>
+                </div>
+                <h3 class="h3 card-title"><a href="./product-details.html">Chaga Mushroom Tea</a></h3>
+                <div class="price-wrapper">
+                  <del class="del">$28.00</del>
+                  <span class="price">$22.99</span>
+                </div>
+                <button class="btn btn-primary" data-add-cart>
+                  <span>Add to Cart</span>
+                  <ion-icon name="basket-outline"></ion-icon>
+                </button>
+              </div>
+            </li>
+
+            <!-- Product 8 (kits) -->
+            <li data-category="kits">
+              <div class="product-card">
+                <div class="card-banner">
+                  <div style="width:180px;height:180px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:7rem;margin:auto;">🧺</div>
+                  <div class="btn-wrapper">
+                    <button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+                      <ion-icon name="heart-outline"></ion-icon>
+                      <span class="tooltip">Add to Wishlist</span>
+                    </button>
+                    <button class="product-btn" aria-label="Quick view">
+                      <ion-icon name="eye-outline"></ion-icon>
+                      <span class="tooltip">Quick View</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="rating-wrapper">
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                </div>
+                <h3 class="h3 card-title"><a href="./product-details.html">Shiitake Home Grow Kit</a></h3>
+                <div class="price-wrapper">
+                  <del class="del">$45.00</del>
+                  <span class="price">$34.99</span>
+                </div>
+                <button class="btn btn-primary" data-add-cart>
+                  <span>Add to Cart</span>
+                  <ion-icon name="basket-outline"></ion-icon>
+                </button>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+      <!-- ========== CTA ========== -->
+
+      <section class="section cta">
+        <div class="container">
+          <p class="section-subtitle">Autumn Harvest Sale</p>
+          <h2 class="h2 section-title">Up To 50% Off All Mushroom Products.</h2>
+          <p class="cta-text">For a limited time — stock up on your favourite fungi before the season ends.</p>
+          <a href="./shop.html" class="btn btn-primary">
+            <span>Shop the Sale</span>
+            <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+          </a>
+        </div>
+      </section>
+
+
+      <!-- ========== TOP SELLERS ========== -->
+
+      <section class="section top-product">
+        <div class="container">
+
+          <p class="section-subtitle">-- Best Sellers --</p>
+          <h2 class="h2 section-title">Trending Mushrooms</h2>
+
+          <ul class="grid-list top-product-list">
+
+            <li>
+              <div class="product-card top-product-card">
+                <figure class="card-banner">
+                  <div style="width:120px;height:120px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:5rem;">🍄</div>
+                </figure>
+                <div class="card-content">
+                  <div class="rating-wrapper"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
+                  <h3 class="h3 card-title"><a href="./product-details.html">Shiitake Premium Pack</a></h3>
+                  <div class="price-wrapper"><del class="del">$18.00</del><span class="price">$14.99</span></div>
+                  <button class="btn btn-primary" data-add-cart><span>Add to Cart</span></button>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="product-card top-product-card">
+                <figure class="card-banner">
+                  <div style="width:120px;height:120px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:5rem;">🌿</div>
+                </figure>
+                <div class="card-content">
+                  <div class="rating-wrapper"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
+                  <h3 class="h3 card-title"><a href="./product-details.html">Reishi Extract Powder</a></h3>
+                  <div class="price-wrapper"><del class="del">$38.00</del><span class="price">$29.99</span></div>
+                  <button class="btn btn-primary" data-add-cart><span>Add to Cart</span></button>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="product-card top-product-card">
+                <figure class="card-banner">
+                  <div style="width:120px;height:120px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:5rem;">🍄</div>
+                </figure>
+                <div class="card-content">
+                  <div class="rating-wrapper"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon></div>
+                  <h3 class="h3 card-title"><a href="./product-details.html">Enoki Cluster (200g)</a></h3>
+                  <div class="price-wrapper"><del class="del">$10.00</del><span class="price">$7.99</span></div>
+                  <button class="btn btn-primary" data-add-cart><span>Add to Cart</span></button>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+      <!-- ========== TRUSTED PARTNERS ========== -->
+
+      <section class="section partner">
+        <div class="container">
+          <p class="section-subtitle">-- Our Suppliers --</p>
+          <h2 class="h2 section-title">Trusted Farming Partners</h2>
+
+          <ul class="has-scrollbar" style="padding-block-end:20px;gap:20px;">
+            <li class="partner-item"><div class="partner-logo">ForestRoots Farm</div></li>
+            <li class="partner-item"><div class="partner-logo">MycoHarvest Co.</div></li>
+            <li class="partner-item"><div class="partner-logo">Spore Valley</div></li>
+            <li class="partner-item"><div class="partner-logo">Umami Farms</div></li>
+            <li class="partner-item"><div class="partner-logo">Wild Earth Co.</div></li>
+            <li class="partner-item"><div class="partner-logo">CedarLog Growers</div></li>
+          </ul>
+
+        </div>
+      </section>
+
+
+      <!-- ========== TESTIMONIALS ========== -->
+
+      <section class="section testimonials">
+        <div class="container">
+
+          <p class="section-subtitle">-- What Customers Say --</p>
+          <h2 class="h2 section-title">Feedback From Happy Mycophiles</h2>
+
+          <ul class="has-scrollbar" style="gap:20px;">
+
+            <li class="testi-item">
+              <div class="testi-card">
+                <div class="card-header">
+                  <img src="https://placehold.co/60x60/f5ebe0/8B4513?text=A" width="60" height="60" loading="lazy" alt="Anika Sharma" class="card-avatar">
+                  <div>
+                    <h3 class="h3 card-title">Anika Sharma</h3>
+                    <p class="card-subtitle">Home Chef</p>
+                  </div>
+                </div>
+                <div class="rating-wrapper"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
+                <p class="card-text">"The shiitake pack was the freshest I've ever had. Arrived in perfect condition and the flavour was incredible. Will definitely be ordering again every week!"</p>
+              </div>
+            </li>
+
+            <li class="testi-item">
+              <div class="testi-card">
+                <div class="card-header">
+                  <img src="https://placehold.co/60x60/f5ebe0/8B4513?text=R" width="60" height="60" loading="lazy" alt="Raj Mehta" class="card-avatar">
+                  <div>
+                    <h3 class="h3 card-title">Raj Mehta</h3>
+                    <p class="card-subtitle">Wellness Coach</p>
+                  </div>
+                </div>
+                <div class="rating-wrapper"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon></div>
+                <p class="card-text">"The Reishi extract powder has been part of my morning routine for 3 months. I feel noticeably more energised. The quality is unmatched compared to other brands."</p>
+              </div>
+            </li>
+
+            <li class="testi-item">
+              <div class="testi-card">
+                <div class="card-header">
+                  <img src="https://placehold.co/60x60/f5ebe0/8B4513?text=P" width="60" height="60" loading="lazy" alt="Priya Nair" class="card-avatar">
+                  <div>
+                    <h3 class="h3 card-title">Priya Nair</h3>
+                    <p class="card-subtitle">Food Blogger</p>
+                  </div>
+                </div>
+                <div class="rating-wrapper"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
+                <p class="card-text">"MycoMart has transformed how I cook. The variety packs are phenomenal — chanterelles, lion's mane, and oyster all in one box. Absolutely worth every rupee!"</p>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+      <!-- ========== BLOG ========== -->
+
+      <section class="section blog">
+        <div class="container">
+
+          <p class="section-subtitle">-- Fungi Knowledge --</p>
+          <h2 class="h2 section-title">From the MycoMart Blog</h2>
+
+          <ul class="blog-list">
+
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner" style="background:var(--cream);text-align:center;font-size:6rem;padding:30px;">🍄</figure>
+                <div class="card-content">
+                  <div class="card-wrapper">
+                    <div class="wrapper-item"><ion-icon name="calendar-clear-outline"></ion-icon><time datetime="2024-10-08">08 Oct, 2024</time></div>
+                    <div class="wrapper-item"><ion-icon name="heart-outline"></ion-icon><span>142 Likes</span></div>
+                  </div>
+                  <h3 class="h3 card-title"><a href="#">The Ultimate Guide to Cooking with Shiitake Mushrooms</a></h3>
+                  <a href="#" class="btn btn-primary">
+                    <span>Read More</span>
+                    <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+                  </a>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner" style="background:var(--cream);text-align:center;font-size:6rem;padding:30px;">🌿</figure>
+                <div class="card-content">
+                  <div class="card-wrapper">
+                    <div class="wrapper-item"><ion-icon name="calendar-clear-outline"></ion-icon><time datetime="2024-09-22">22 Sep, 2024</time></div>
+                    <div class="wrapper-item"><ion-icon name="heart-outline"></ion-icon><span>98 Likes</span></div>
+                  </div>
+                  <h3 class="h3 card-title"><a href="#">5 Science-Backed Benefits of Reishi Mushroom Extract</a></h3>
+                  <a href="#" class="btn btn-primary">
+                    <span>Read More</span>
+                    <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+                  </a>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="blog-card">
+                <figure class="card-banner" style="background:var(--cream);text-align:center;font-size:6rem;padding:30px;">🧺</figure>
+                <div class="card-content">
+                  <div class="card-wrapper">
+                    <div class="wrapper-item"><ion-icon name="calendar-clear-outline"></ion-icon><time datetime="2024-09-05">05 Sep, 2024</time></div>
+                    <div class="wrapper-item"><ion-icon name="heart-outline"></ion-icon><span>76 Likes</span></div>
+                  </div>
+                  <h3 class="h3 card-title"><a href="#">How to Grow Your Own Mushrooms at Home in 4 Easy Steps</a></h3>
+                  <a href="#" class="btn btn-primary">
+                    <span>Read More</span>
+                    <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+                  </a>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+      <!-- ========== NEWSLETTER ========== -->
+
+      <section class="section newsletter">
+        <div class="container">
+          <div class="newsletter-card">
+            <p class="section-subtitle">-- Subscribe Newsletter --</p>
+            <h2 class="h2 section-title">Sign Up & Get <span class="span">20% Off Your First Order.</span></h2>
+            <form action="#" class="newsletter-form" data-newsletter-form>
+              <input type="email" name="email" placeholder="Enter your email address" required class="input-email">
+              <button type="submit" class="btn btn-primary">
+                <span>Sign Up</span>
+                <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+
+  <!-- ========== FOOTER ========== -->
+
+  <footer class="footer">
+
+    <div class="footer-top">
+      <div class="container">
+
+        <div class="footer-brand">
+          <a href="./index.html" class="logo">Myco<span class="span">Mart</span></a>
+          <p class="footer-text">
+            Hand-harvested, certified organic mushrooms from trusted farms. We connect mushroom lovers with nature's finest fungi — delivered fresh to your door.
+          </p>
+          <ul class="social-list">
+            <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
+            <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
+            <li><a href="#" class="social-link"><ion-icon name="logo-youtube"></ion-icon></a></li>
+          </ul>
+        </div>
+
+        <ul class="footer-list">
+          <li><p class="footer-list-title">Company</p></li>
+          <li><a href="./about.html" class="footer-link">About Us</a></li>
+          <li><a href="./shop.html" class="footer-link">Shop</a></li>
+          <li><a href="./blog.html" class="footer-link">Blog</a></li>
+          <li><a href="./shop.html" class="footer-link">Products</a></li>
+          <li><a href="./contact.html" class="footer-link">Contact Us</a></li>
+        </ul>
+
+        <ul class="footer-list">
+          <li><p class="footer-list-title">Contact</p></li>
+          <li class="footer-item">
+            <div class="contact-icon"><ion-icon name="location-outline"></ion-icon></div>
+            <address class="contact-link">12 Spore Lane, Mycelium Park, Bengaluru 560001</address>
+          </li>
+          <li class="footer-item">
+            <div class="contact-icon"><ion-icon name="call-outline"></ion-icon></div>
+            <a href="tel:+918001234567" class="contact-link">+91 800 123 4567</a>
+          </li>
+          <li class="footer-item">
+            <div class="contact-icon"><ion-icon name="mail-outline"></ion-icon></div>
+            <a href="mailto:hello@mycomart.in" class="contact-link">hello@mycomart.in</a>
+          </li>
+        </ul>
+
+        <div class="footer-list">
+          <p class="footer-list-title">Newsletter</p>
+          <p class="newsletter-text">Get mushroom tips, recipes, and exclusive deals in your inbox.</p>
+          <form action="#" class="footer-form" data-newsletter-form>
+            <input type="email" name="email" placeholder="Email Address *" required class="footer-input">
+            <button type="submit" class="footer-form-btn" aria-label="Submit">
+              <ion-icon name="mail-outline"></ion-icon>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">
+          &copy; 2024 <a href="#" class="copyright-link">MycoMart</a>. All Rights Reserved.
+        </p>
+        <ul class="footer-bottom-list">
+          <li><a href="#" class="footer-bottom-link">Terms of Service</a></li>
+          <li><a href="#" class="footer-bottom-link">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </footer>
+
+
+  <!-- Back to Top -->
+  <a href="#top" class="back-to-top" aria-label="Back to Top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

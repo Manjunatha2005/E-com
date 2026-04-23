@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MycoMart — Shiitake Premium Pack</title>
+
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/product-details.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body id="top">
+
+  <!-- ========== HEADER (same as index) ========== -->
+
+  <header class="header" data-header>
+
+   
+
+    <div class="nav-wrapper">
+      <div class="container">
+
+        <h1 class="h1">
+          <a href="./index.html" class="logo">Myco<span class="span">Mart</span></a>
+        </h1>
+
+        <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <nav class="navbar" data-navbar>
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <ul class="navbar-list">
+            <li><a href="./index.html" class="navbar-link">Home</a></li>
+            <li><a href="./about.html" class="navbar-link">About</a></li>
+            <li><a href="./shop.html" class="navbar-link">Shop</a></li>
+            <li><a href="./blog.html" class="navbar-link">Blog</a></li>
+            <li><a href="./shop.html" class="navbar-link">Products</a></li>
+            <li><a href="./contact.html" class="navbar-link">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-action">
+          <div class="search-wrapper" data-search-wrapper>
+            <button class="header-action-btn" aria-label="Toggle search" data-search-btn>
+              <ion-icon name="search-outline" class="search-icon"></ion-icon>
+              <ion-icon name="close-outline" class="close-icon"></ion-icon>
+            </button>
+            <div class="input-wrapper">
+              <input type="search" name="search" placeholder="Search mushrooms..." class="search-input">
+              <button class="search-submit" aria-label="Submit search">
+                <ion-icon name="search-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+
+          <button class="header-action-btn" aria-label="Open wishlist" data-panel-btn="wishlist">
+            <ion-icon name="heart-outline"></ion-icon>
+            <data class="btn-badge" value="2" data-wish-badge>02</data>
+          </button>
+
+          <button class="header-action-btn" aria-label="Open shopping cart" data-panel-btn="cart">
+            <ion-icon name="basket-outline"></ion-icon>
+            <data class="btn-badge" value="3" data-cart-badge>03</data>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </header>
+
+  <div class="overlay" data-overlay></div>
+
+  <!-- ========== ASIDE PANELS ========== -->
+  <aside class="aside">
+    <div class="side-panel" data-side-panel="wishlist">
+      <button class="panel-close-btn" data-panel-btn="wishlist">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+      <ul class="panel-list">
+        <li class="panel-item">
+          <a href="#" class="panel-card">
+            <figure class="item-banner">
+              <img src="https://placehold.co/46x46/f5ebe0/8B4513?text=🍄" width="46" height="46" loading="lazy" alt="Shiitake">
+            </figure>
+            <div>
+              <p class="item-title">Shiitake Premium Pack</p>
+              <span class="item-value">$14.99 × 1</span>
+            </div>
+            <button class="item-close-btn"><ion-icon name="close-outline"></ion-icon></button>
+          </a>
+        </li>
+      </ul>
+      <div class="subtotal">
+        <p class="subtotal-text">Subtotal:</p>
+        <data class="subtotal-value" value="14.99">$14.99</data>
+      </div>
+      <a href="./wishlist.html" class="panel-btn">View Wishlist</a>
+    </div>
+
+    <div class="side-panel" data-side-panel="cart">
+      <button class="panel-close-btn" data-panel-btn="cart">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+      <ul class="panel-list">
+        <li class="panel-item">
+          <a href="#" class="panel-card">
+            <figure class="item-banner">
+              <img src="https://placehold.co/46x46/f5ebe0/8B4513?text=🍄" width="46" height="46" loading="lazy" alt="Shiitake">
+            </figure>
+            <div>
+              <p class="item-title">Shiitake Premium Pack</p>
+              <span class="item-value">$14.99 × 1</span>
+            </div>
+            <button class="item-close-btn"><ion-icon name="close-outline"></ion-icon></button>
+          </a>
+        </li>
+      </ul>
+      <div class="subtotal">
+        <p class="subtotal-text">Subtotal:</p>
+        <data class="subtotal-value" value="14.99">$14.99</data>
+      </div>
+      <a href="./cart.html" class="panel-btn">View Cart</a>
+    </div>
+  </aside>
+
+
+  <main>
+
+    <!-- Breadcrumb -->
+    <div class="breadcumb-wrapper">
+      <h2 class="h2 page-title">Product Details</h2>
+      <ul class="breadcumb-list">
+        <li class="breadcumb-item">
+          <a href="./index.html" class="breadcumb-link">Home</a>
+        </li>
+        <li class="breadcumb-item">
+          <a href="./shop.html" class="breadcumb-link">Shop</a>
+        </li>
+        <li class="breadcumb-item">Shiitake Premium Pack</li>
+      </ul>
+    </div>
+
+
+    <!-- ========== PRODUCT DETAILS ========== -->
+
+    <section class="section product-details">
+      <div class="container">
+
+        <div class="wrapper">
+
+          <!-- Image Gallery -->
+          <div class="product-details-img">
+
+            <figure class="product-display">
+              <img
+                src="https://placehold.co/500x450/f5ebe0/8B4513?text=🍄+Shiitake"
+                width="500"
+                height="450"
+                loading="lazy"
+                alt="Shiitake Premium Pack"
+                class="w-100"
+                data-main-display>
+            </figure>
+
+            <ul class="has-scrollbar product-thumbnail-list">
+              <li class="product-thumbnail-item active" data-thumbnail>
+                <img src="https://placehold.co/120x100/f5ebe0/8B4513?text=Front" width="120" height="100" loading="lazy" alt="Shiitake front view">
+              </li>
+              <li class="product-thumbnail-item" data-thumbnail>
+                <img src="https://placehold.co/120x100/e8d5b7/6B3A10?text=Side" width="120" height="100" loading="lazy" alt="Shiitake side view">
+              </li>
+              <li class="product-thumbnail-item" data-thumbnail>
+                <img src="https://placehold.co/120x100/d4b896/5A2F0A?text=Close" width="120" height="100" loading="lazy" alt="Shiitake close-up">
+              </li>
+              <li class="product-thumbnail-item" data-thumbnail>
+                <img src="https://placehold.co/120x100/c9a87c/4A2000?text=Pack" width="120" height="100" loading="lazy" alt="Shiitake package">
+              </li>
+            </ul>
+
+          </div>
+
+          <!-- Product Info -->
+          <div class="product-details-content">
+
+            <div class="product-badges">
+              <span class="badge organic">🌿 Certified Organic</span>
+              <span class="badge fresh">✅ Farm Fresh</span>
+              <span class="badge">🚚 Ships Cold</span>
+            </div>
+
+            <h2 class="product-title">Shiitake Mushrooms — Premium Pack</h2>
+            <p class="product-price"><span class="currency">$14.99</span> <del style="font-size:1.6rem;color:var(--battleship-gray);">$18.00</del></p>
+
+            <div class="rating-wrapper" style="--justify-content:flex-start;margin-block:15px 5px;">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-half"></ion-icon>
+              <span style="font-size:1.4rem;color:var(--muted-taupe);margin-inline-start:8px;">(4.5 / 5 — 128 reviews)</span>
+            </div>
+
+            <p class="product-text">
+              Our Shiitake Premium Pack contains hand-picked, organic shiitake mushrooms grown on natural oak logs. Rich in umami flavour, packed with B vitamins, zinc, and immune-boosting beta-glucans. Perfect for stir-fries, soups, risottos, and grilling.
+            </p>
+
+            <!-- Weight / Size Selector -->
+            <div class="product-weight-wrapper">
+              <p class="product-weight-title">Weight :</p>
+              <ul class="product-weight-list">
+                <li>
+                  <input type="radio" name="weight" id="w-200g" class="product-weight-radio" value="200g">
+                  <label for="w-200g" class="product-weight-label">200g</label>
+                </li>
+                <li>
+                  <input type="radio" name="weight" id="w-500g" class="product-weight-radio" value="500g" checked>
+                  <label for="w-500g" class="product-weight-label">500g</label>
+                </li>
+                <li>
+                  <input type="radio" name="weight" id="w-1kg" class="product-weight-radio" value="1kg">
+                  <label for="w-1kg" class="product-weight-label">1 kg</label>
+                </li>
+                <li>
+                  <input type="radio" name="weight" id="w-2kg" class="product-weight-radio" value="2kg">
+                  <label for="w-2kg" class="product-weight-label">2 kg</label>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Quantity & Cart -->
+            <div class="product-qty">
+              <input
+                type="number"
+                name="qty"
+                value="1"
+                min="1"
+                max="99"
+                class="product-qty-input"
+                data-qty-input>
+
+              <button class="btn btn-primary product-qty-btn" data-add-cart>
+                <span>Add To Cart</span>
+                <ion-icon name="basket-outline"></ion-icon>
+              </button>
+
+              <button class="btn product-qty-btn" style="--bg-color:var(--cream);--color:var(--amber-primary);border:2px solid var(--amber-primary);margin-inline-start:10px;" data-add-wish>
+                <ion-icon name="heart-outline"></ion-icon>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Description & Info Tabs -->
+        <div class="product-description">
+
+          <h3 class="description-title">Description</h3>
+          <p class="description-text">
+            Grown on natural oak logs in temperature-controlled growing rooms, our Shiitake mushrooms develop their signature meaty texture and deep, savoury flavour. Each pack is harvested at peak maturity and packed within 24 hours of picking to ensure maximum freshness.
+          </p>
+          <p class="description-text">
+            Shiitake are one of the most nutritionally dense mushrooms available. A single 100g serving provides 40% of your daily copper needs, significant B6 and B5 (pantothenic acid), plus lentinan — a powerful polysaccharide known for immune modulation. They are also one of the rare plant sources of vitamin D when sun-dried.
+          </p>
+
+          <h3 class="description-title">Additional Information</h3>
+
+          <table class="description-table" border="1">
+            <tbody>
+              <tr>
+                <th class="table-heading">Attribute</th>
+                <th class="table-heading">Details</th>
+              </tr>
+              <tr>
+                <td class="table-heading">Species</td>
+                <td class="table-data">Lentinula edodes</td>
+              </tr>
+              <tr>
+                <td class="table-heading">Origin</td>
+                <td class="table-data">ForestRoots Farm, Karnataka</td>
+              </tr>
+              <tr>
+                <td class="table-heading">Rating</td>
+                <td class="table-data">★★★★½ (4.5/5)</td>
+              </tr>
+              <tr>
+                <td class="table-heading">Certification</td>
+                <td class="table-data">NPOP Organic Certified</td>
+              </tr>
+              <tr>
+                <td class="table-heading">Shelf Life</td>
+                <td class="table-data">7–10 days refrigerated</td>
+              </tr>
+              <tr>
+                <td class="table-heading">Storage</td>
+                <td class="table-data">2–8 °C, paper bag preferred</td>
+              </tr>
+              <tr>
+                <td class="table-heading">Seller</td>
+                <td class="table-data">MycoMart</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========== FOOTER ========== -->
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+
+        <div class="footer-brand">
+          <a href="./index.html" class="logo">Myco<span class="span">Mart</span></a>
+          <p class="footer-text">Premium organic mushrooms, delivered fresh from farm to your door.</p>
+          <ul class="social-list">
+            <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
+            <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
+          </ul>
+        </div>
+
+        <ul class="footer-list">
+          <li><p class="footer-list-title">Company</p></li>
+          <li><a href="./about.html" class="footer-link">About Us</a></li>
+          <li><a href="./shop.html" class="footer-link">Shop</a></li>
+          <li><a href="./blog.html" class="footer-link">Blog</a></li>
+          <li><a href="./contact.html" class="footer-link">Contact Us</a></li>
+        </ul>
+
+        <ul class="footer-list">
+          <li><p class="footer-list-title">Contact</p></li>
+          <li class="footer-item">
+            <div class="contact-icon"><ion-icon name="location-outline"></ion-icon></div>
+            <address class="contact-link">12 Spore Lane, Bengaluru 560001</address>
+          </li>
+          <li class="footer-item">
+            <div class="contact-icon"><ion-icon name="call-outline"></ion-icon></div>
+            <a href="tel:+918001234567" class="contact-link">+91 800 123 4567</a>
+          </li>
+          <li class="footer-item">
+            <div class="contact-icon"><ion-icon name="mail-outline"></ion-icon></div>
+            <a href="mailto:hello@mycomart.in" class="contact-link">hello@mycomart.in</a>
+          </li>
+        </ul>
+
+        <div class="footer-list">
+          <p class="footer-list-title">Newsletter</p>
+          <p class="newsletter-text">Get mushroom tips, recipes, and exclusive deals.</p>
+          <form action="#" class="footer-form" data-newsletter-form>
+            <input type="email" name="email" placeholder="Email Address *" required class="footer-input">
+            <button type="submit" class="footer-form-btn" aria-label="Submit">
+              <ion-icon name="mail-outline"></ion-icon>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">&copy; 2024 <a href="#" class="copyright-link">MycoMart</a>. All Rights Reserved.</p>
+        <ul class="footer-bottom-list">
+          <li><a href="#" class="footer-bottom-link">Terms of Service</a></li>
+          <li><a href="#" class="footer-bottom-link">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#top" class="back-to-top" aria-label="Back to Top" data-back-top-btn>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+  <script src="./assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
