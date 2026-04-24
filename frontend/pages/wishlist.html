@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MycoMart - Premium Wishlist</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/home.css">
+  <style>
+    .wishlist-hero {
+      padding-block: 58px 20px;
+      background: linear-gradient(145deg, #f7f2eb 0%, #fdf9f3 46%, #eef6f2 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wishlist-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 16% 18%, rgba(16, 130, 117, 0.08) 0 7px, transparent 8px),
+        radial-gradient(circle at 83% 25%, rgba(188, 108, 37, 0.12) 0 10px, transparent 11px),
+        radial-gradient(circle at 70% 76%, rgba(16, 130, 117, 0.07) 0 8px, transparent 9px);
+      pointer-events: none;
+    }
+
+    .wishlist-hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .kicker {
+      color: var(--amber-primary);
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      font-weight: var(--fw-700);
+      margin-bottom: 8px;
+      font-size: 1.3rem;
+    }
+
+    .wishlist-subtitle {
+      color: #7a6a57;
+      margin: 10px 0 0;
+      font-size: 1.55rem;
+      line-height: 1.8;
+      max-width: 66ch;
+    }
+
+    .wishlist-page {
+      padding: 30px 20px 70px;
+      background: #fff;
+    }
+
+    .wishlist-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+    }
+
+    .wishlist-card,
+    .actions-card {
+      background: #fff;
+      border: 1px solid #eadfcf;
+      border-radius: 16px;
+      box-shadow: 0 20px 34px -28px rgba(39, 30, 20, 0.35);
+    }
+
+    .wishlist-card {
+      padding: 22px;
+    }
+
+    .wish-item {
+      display: grid;
+      grid-template-columns: 78px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0e8dc;
+    }
+
+    .wish-item:last-child {
+      border-bottom: 0;
+    }
+
+    .wish-thumb {
+      width: 78px;
+      height: 78px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid #eadfcf;
+    }
+
+    .wish-title {
+      margin: 0 0 4px;
+      color: #36281c;
+      font-size: 1.7rem;
+    }
+
+    .wish-meta {
+      margin: 0;
+      color: #7a6a57;
+      font-size: 1.4rem;
+    }
+
+    .wish-price {
+      color: #176f4f;
+      font-weight: 700;
+      font-size: 1.6rem;
+    }
+
+    .premium-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff4dc;
+      border: 1px solid #f0d5a5;
+      color: #7d4d19;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .actions-card {
+      padding: 20px;
+    }
+
+    .actions-title {
+      margin: 0 0 12px;
+      color: #36281c;
+    }
+
+    .actions-text {
+      color: #6b5c4b;
+      line-height: 1.7;
+      margin: 0 0 18px;
+      font-size: 1.5rem;
+    }
+
+    .action-buttons {
+      display: grid;
+      gap: 10px;
+    }
+
+    .saved-note {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #eadfcf;
+      color: #6b5c4b;
+      font-size: 1.35rem;
+      line-height: 1.7;
+    }
+
+    .assurance {
+      margin-top: 14px;
+      display: grid;
+      gap: 8px;
+      color: #6b5c4b;
+      font-size: 1.35rem;
+    }
+
+    .assurance span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      border: 1px solid #d8c7b1;
+      color: #7a5628;
+    }
+
+    @media (min-width: 980px) {
+      .wishlist-layout {
+        grid-template-columns: 1.55fr 0.9fr;
+        align-items: start;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <header class="header" data-header>
+    <div class="nav-wrapper">
+      <div class="container">
+        <h1 class="h1">
+          <a href="../index.html" class="logo">Myco<span class="span">Mart</span></a>
+        </h1>
+
+        <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <nav class="navbar" data-navbar>
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <ul class="navbar-list">
+            <li><a href="../index.html" class="navbar-link">Home</a></li>
+            <li><a href="./shop.html" class="navbar-link">Shop</a></li>
+            <li><a href="./blog.html" class="navbar-link">Blog</a></li>
+            <li><a href="./product-details.html?item=shiitake" class="navbar-link">Products</a></li>
+            <li><a href="./contact.html" class="navbar-link">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-action">
+          <button class="header-action-btn" aria-label="Open wishlist" onclick="window.location.href='./wishlist.html'">
+            <ion-icon name="heart-outline"></ion-icon>
+            <data class="btn-badge" value="2" data-wish-badge>02</data>
+          </button>
+          <button class="header-action-btn" aria-label="Open shopping cart" onclick="window.location.href='./cart.html'">
+            <ion-icon name="basket-outline"></ion-icon>
+            <data class="btn-badge" value="3" data-cart-badge>03</data>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="overlay" data-overlay></div>
+
+  <section class="wishlist-hero">
+    <div class="container">
+      <p class="kicker">Saved Favorites</p>
+      <h2 class="h2 section-title">Your Premium Wishlist</h2>
+      <p class="wishlist-subtitle">Keep your favorite mushrooms in one place, then move them to cart whenever you are ready to checkout.</p>
+    </div>
+  </section>
+
+  <main class="wishlist-page">
+    <section class="wishlist-layout">
+      <article class="wishlist-card">
+        <span class="premium-chip"><ion-icon name="sparkles-outline"></ion-icon>Premium Picks</span>
+        <h3 class="h3" style="margin-bottom:8px;">Saved Mushrooms</h3>
+        <p style="color:#7a6a57;margin-bottom:14px;">These items are reserved in your wishlist for quick access.</p>
+
+        <div class="wish-item">
+          <img class="wish-thumb" src="../assets/images/Button_Mushroom/button_mushroom_1.png" alt="Button Mushroom">
+          <div>
+            <p class="wish-title">Button Mushroom</p>
+            <p class="wish-meta">200g Pack • Everyday cooking</p>
+          </div>
+          <p class="wish-price">Rs. 100.00</p>
+        </div>
+
+        <div class="wish-item">
+          <img class="wish-thumb" src="../assets/images/Portobello_Mushroom/portobello_mushroom_1.png" alt="Portobello Mushroom">
+          <div>
+            <p class="wish-title">Portobello Mushroom</p>
+            <p class="wish-meta">200g Pack • Meaty texture</p>
+          </div>
+          <p class="wish-price">Rs. 300.00</p>
+        </div>
+
+        <div class="wish-item">
+          <img class="wish-thumb" src="../assets/images/Oyster_Mushroom/oyster_mushroom_1.png" alt="Oyster Mushroom">
+          <div>
+            <p class="wish-title">Oyster Mushroom</p>
+            <p class="wish-meta">200g Pack • Soft and delicate</p>
+          </div>
+          <p class="wish-price">Rs. 120.00</p>
+        </div>
+
+        <p class="saved-note">Tip: move items to cart to lock your checkout total and proceed with OTP-secured ordering.</p>
+      </article>
+
+      <aside class="actions-card">
+        <h2 class="actions-title">Wishlist Actions</h2>
+        <p class="actions-text">Move selected mushrooms to your cart and complete your order with OTP-secured checkout.</p>
+        <div class="action-buttons">
+          <a href="./cart.html" class="btn btn-primary">Move to Cart</a>
+          <a href="./shop.html" class="btn btn-secondary">Continue Shopping</a>
+        </div>
+
+        <div class="assurance">
+          <span><ion-icon name="heart-outline"></ion-icon>Keep favorites saved across sessions</span>
+          <span><ion-icon name="shield-checkmark-outline"></ion-icon>Safe OTP-secured checkout</span>
+          <span><ion-icon name="leaf-outline"></ion-icon>Fresh premium mushrooms from trusted farms</span>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer" style="margin-top:0;">
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">&copy; 2026 <a href="#" class="copyright-link">MycoMart</a>. Premium mushrooms, delivered fresh.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

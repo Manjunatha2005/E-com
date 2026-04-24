@@ -135,15 +135,112 @@ thumbnailItems.forEach(thumb => {
  */
 const cartBtns      = document.querySelectorAll('[data-add-cart]');
 const cartBadge     = document.querySelector('[data-cart-badge]');
-let cartCount = parseInt(cartBadge?.textContent || '0');
+const API_BASE = localStorage.getItem('mycomart_api_base') || 'http://localhost:5000/api';
+
+let backendProducts = [];
+
+const normalize = (value = '') => value.toLowerCase().replace(/[_\s-]+/g, ' ').trim();
+
+const readCart = () => {
+  try {
+    const raw = localStorage.getItem('mycomart_cart');
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+};
+
+const writeCart = (cart) => {
+  localStorage.setItem('mycomart_cart', JSON.stringify(cart));
+};
+
+const totalQty = (cart) => cart.reduce((acc, item) => acc + (Number(item.qty) || 0), 0);
+
+const syncCartBadge = () => {
+  const qty = totalQty(readCart());
+  if (cartBadge) {
+    cartBadge.textContent = String(qty).padStart(2, '0');
+    cartBadge.setAttribute('value', qty);
+  }
+};
+
+const loadBackendProducts = async () => {
+  try {
+    const res = await fetch(`${API_BASE}/products?limit=100`);
+    const data = await res.json();
+    backendProducts = Array.isArray(data.products) ? data.products : [];
+  } catch {
+    backendProducts = [];
+  }
+};
+
+const resolveProductFromButton = (button) => {
+  const card = button.closest('.product-card') || button.closest('[data-category]') || document;
+  const titleNode = card.querySelector('.card-title a, .h3.card-title a, .item-title, .product-title, h3, h2');
+  const priceNode = card.querySelector('.price, .product-price .currency, .item-value');
+  const imageNode = card.querySelector('img');
+
+  const name = (titleNode?.textContent || 'Mushroom').trim();
+  const normalizedName = normalize(name);
+  const image = imageNode?.getAttribute('src') || '';
+
+  const parsedPrice = Number((priceNode?.textContent || '').replace(/[^0-9.]/g, ''));
+  const price = Number.isFinite(parsedPrice) && parsedPrice > 0 ? parsedPrice : 0;
+
+  const backendMatch = backendProducts.find((p) => {
+    const n1 = normalize(p.name || '');
+    return n1.includes(normalizedName) || normalizedName.includes(n1);
+  });
+
+  return {
+    product: backendMatch?._id || null,
+    slug: backendMatch?.slug || null,
+    name,
+    image,
+    price: backendMatch?.price ?? price,
+    qty: 1,
+    weightOption: '200g',
+  };
+};
+
+const addToLocalCart = (item) => {
+  const cart = readCart();
+  const existingIdx = cart.findIndex((c) => (c.product && c.product === item.product) || normalize(c.name) === normalize(item.name));
+
+  if (existingIdx >= 0) {
+    cart[existingIdx].qty = (Number(cart[existingIdx].qty) || 0) + 1;
+    if (!cart[existingIdx].product && item.product) {
+      cart[existingIdx].product = item.product;
+      cart[existingIdx].slug = item.slug;
+    }
+  } else {
+    cart.push(item);
+  }
+
+  writeCart(cart);
+  syncCartBadge();
+};
+
+const isOtpVerified = () => localStorage.getItem('mycomart_otp_verified') === 'true';
+
+const getLoginPageUrl = () => {
+  return window.location.pathname.includes('/pages/') ? './login.html' : './pages/login.html';
+};
+
+syncCartBadge();
+loadBackendProducts();
 
 cartBtns.forEach(btn => {
   btn.addEventListener('click', function () {
-    cartCount++;
-    if (cartBadge) {
-      cartBadge.textContent = String(cartCount).padStart(2, '0');
-      cartBadge.setAttribute('value', cartCount);
+    if (!isOtpVerified()) {
+      const returnPath = `${window.location.pathname}${window.location.search}`;
+      const loginUrl = `${getLoginPageUrl()}?redirect=${encodeURIComponent(returnPath)}`;
+      window.location.href = loginUrl;
+      return;
     }
+
+    const item = resolveProductFromButton(this);
+    addToLocalCart(item);
 
     // Visual feedback
     const originalText = this.querySelector('span')?.textContent;

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MycoMart - OTP Login</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/home.css">
+  <style>
+    .login-wrap {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: linear-gradient(155deg, #f7efe3 0%, #fdfaf5 45%, #eef5f2 100%);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 520px;
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid #eadfcf;
+      box-shadow: 0 22px 44px -30px rgba(40, 34, 25, 0.35);
+      padding: 28px;
+    }
+
+    .login-title {
+      margin: 0 0 8px;
+      color: #3a2d20;
+      font-size: 2.8rem;
+    }
+
+    .login-text {
+      margin: 0 0 18px;
+      color: #6f6356;
+      line-height: 1.7;
+      font-size: 1.45rem;
+    }
+
+    .otp-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .otp-input {
+      width: 100%;
+      border: 1px solid #d7ccbf;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font: inherit;
+      font-size: 1.5rem;
+      color: #3a2d20;
+    }
+
+    .otp-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .status-msg {
+      font-size: 1.35rem;
+      color: #6f6356;
+      min-height: 20px;
+    }
+
+    .status-msg.ok {
+      color: #118a61;
+    }
+
+    .status-msg.err {
+      color: #c0392b;
+    }
+
+    .login-foot {
+      margin-top: 12px;
+      font-size: 1.3rem;
+      color: #7b6f61;
+    }
+  </style>
+</head>
+<body>
+  <main class="login-wrap">
+    <section class="login-card">
+      <h1 class="login-title">OTP Login</h1>
+      <p class="login-text">Login to place mushroom orders. Enter your phone number to receive OTP and verify.</p>
+
+      <form class="otp-form" id="otpForm" novalidate>
+        <input id="phoneInput" class="otp-input" type="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="Enter 10-digit mobile number" required>
+
+        <div class="otp-row">
+          <button class="btn btn-primary" type="button" id="sendOtpBtn">Send OTP</button>
+          <button class="btn btn-secondary" type="button" id="resendOtpBtn" disabled>Resend OTP</button>
+        </div>
+
+        <input id="otpInput" class="otp-input" type="text" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit OTP" disabled>
+        <button class="btn btn-primary" type="submit" id="verifyBtn" disabled>Verify & Continue</button>
+
+        <p id="statusMsg" class="status-msg"></p>
+      </form>
+
+      <p class="login-foot">Demo mode: OTP is shown on screen for testing.</p>
+    </section>
+  </main>
+
+  <script>
+    const phoneInput = document.getElementById('phoneInput');
+    const otpInput = document.getElementById('otpInput');
+    const sendOtpBtn = document.getElementById('sendOtpBtn');
+    const resendOtpBtn = document.getElementById('resendOtpBtn');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const statusMsg = document.getElementById('statusMsg');
+    const otpForm = document.getElementById('otpForm');
+
+    const API_BASE = localStorage.getItem('mycomart_api_base') || 'http://localhost:5000/api';
+
+    const setStatus = (text, type = '') => {
+      statusMsg.textContent = text;
+      statusMsg.className = `status-msg ${type}`.trim();
+    };
+
+    const validPhone = (value) => /^\d{10}$/.test(value);
+
+    const sendOtp = async () => {
+      const phone = phoneInput.value.trim();
+      if (!validPhone(phone)) {
+        setStatus('Please enter a valid 10-digit mobile number.', 'err');
+        return;
+      }
+
+      sendOtpBtn.disabled = true;
+      resendOtpBtn.disabled = true;
+
+      try {
+        const res = await fetch(`${API_BASE}/users/otp/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || 'Failed to send OTP');
+        }
+
+        otpInput.disabled = false;
+        verifyBtn.disabled = false;
+        resendOtpBtn.disabled = false;
+        setStatus(`OTP sent. Demo OTP: ${data.otp}`, 'ok');
+      } catch (error) {
+        setStatus(error.message || 'Unable to send OTP. Check backend server.', 'err');
+      } finally {
+        sendOtpBtn.disabled = false;
+      }
+    };
+
+    sendOtpBtn.addEventListener('click', sendOtp);
+    resendOtpBtn.addEventListener('click', sendOtp);
+
+    otpForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const enteredOtp = otpInput.value.trim();
+      const phone = phoneInput.value.trim();
+
+      verifyBtn.disabled = true;
+
+      try {
+        const res = await fetch(`${API_BASE}/users/otp/verify`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone, otp: enteredOtp }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || 'OTP verification failed');
+        }
+
+        localStorage.setItem('mycomart_otp_verified', 'true');
+        localStorage.setItem('mycomart_user_phone', phone);
+        localStorage.setItem('mycomart_token', data.token || '');
+        localStorage.setItem('mycomart_user', JSON.stringify({
+          _id: data._id,
+          name: data.name,
+          email: data.email,
+          role: data.role,
+        }));
+
+        setStatus('Login successful. Redirecting...', 'ok');
+
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get('redirect');
+        const fallback = './shop.html';
+
+        setTimeout(() => {
+          if (redirect) {
+            window.location.href = decodeURIComponent(redirect);
+          } else {
+            window.location.href = fallback;
+          }
+        }, 450);
+      } catch (error) {
+        setStatus(error.message || 'Verification failed. Check backend server.', 'err');
+      } finally {
+        verifyBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

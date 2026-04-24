@@ -1,6 +1,7 @@
 const express  = require('express');
 const asyncH   = require('express-async-handler');
 const jwt      = require('jsonwebtoken');
+const crypto   = require('crypto');
 const User     = require('../models/User');
 const { protect, admin } = require('../middleware/authMiddleware');
 
@@ -18,6 +19,9 @@ const userPayload = (u) => ({
   role:  u.role,
   token: generateToken(u._id),
 });
+
+const otpStore = new Map();
+const OTP_TTL_MS = 5 * 60 * 1000;
 
 
 // ─── Public ───────────────────────────────────────────────────────────────────
@@ -56,6 +60,82 @@ router.post('/login', asyncH(async (req, res) => {
   if (!user || !(await user.matchPassword(password))) {
     res.status(401);
     throw new Error('Invalid email or password');
+  }
+
+  res.json(userPayload(user));
+}));
+
+
+/**
+ * POST /api/users/otp/send
+ * Body: { phone }
+ */
+router.post('/otp/send', asyncH(async (req, res) => {
+  const { phone } = req.body;
+
+  if (!phone || !/^\d{10}$/.test(phone)) {
+    res.status(400);
+    throw new Error('Please provide a valid 10-digit phone number');
+  }
+
+  const otp = String(Math.floor(100000 + Math.random() * 900000));
+  otpStore.set(phone, { otp, expiresAt: Date.now() + OTP_TTL_MS });
+
+  // Demo mode: return OTP directly for frontend testing.
+  res.json({
+    message: 'OTP sent successfully',
+    otp,
+    expiresInSeconds: Math.floor(OTP_TTL_MS / 1000),
+  });
+}));
+
+
+/**
+ * POST /api/users/otp/verify
+ * Body: { phone, otp }
+ */
+router.post('/otp/verify', asyncH(async (req, res) => {
+  const { phone, otp } = req.body;
+
+  if (!phone || !/^\d{10}$/.test(phone)) {
+    res.status(400);
+    throw new Error('Please provide a valid 10-digit phone number');
+  }
+
+  if (!otp || !/^\d{6}$/.test(otp)) {
+    res.status(400);
+    throw new Error('Please provide a valid 6-digit OTP');
+  }
+
+  const entry = otpStore.get(phone);
+  if (!entry) {
+    res.status(400);
+    throw new Error('OTP not found. Please request a new OTP');
+  }
+
+  if (entry.expiresAt < Date.now()) {
+    otpStore.delete(phone);
+    res.status(400);
+    throw new Error('OTP expired. Please request a new OTP');
+  }
+
+  if (entry.otp !== otp) {
+    res.status(401);
+    throw new Error('Invalid OTP');
+  }
+
+  otpStore.delete(phone);
+
+  const otpEmail = `${phone}@otp.mycomart.local`;
+  let user = await User.findOne({ email: otpEmail });
+
+  if (!user) {
+    const randomPassword = crypto.randomBytes(16).toString('hex');
+    user = await User.create({
+      name: `Myco User ${phone.slice(-4)}`,
+      email: otpEmail,
+      password: randomPassword,
+    });
   }
 
   res.json(userPayload(user));

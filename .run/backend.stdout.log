@@ -1,0 +1,12 @@
+
+  🍄  MycoMart API running
+  ─────────────────────────────────────
+  Environment : development
+  Port        : 5000
+  Health      : http://localhost:5000/api/health
+  Products    : http://localhost:5000/api/products
+  Users       : http://localhost:5000/api/users
+  Orders      : http://localhost:5000/api/orders
+  ─────────────────────────────────────
+  
+✅  MongoDB connected: localhost

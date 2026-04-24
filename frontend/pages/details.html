@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mushroom Details</title>
+  <style>
+    :root {
+      --bg: #f2f2f2;
+      --card: #ffffff;
+      --title: #b96c24;
+      --text: #2f2f2f;
+      --muted: #6b6b6b;
+      --line: #e5e5e5;
+      --accent: #c07224;
+      --accent-dark: #a75f1b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 28px auto;
+      padding: 0 20px;
+    }
+
+    .details {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: 1fr;
+      background: transparent;
+    }
+
+    .media-wrap {
+      display: grid;
+      gap: 14px;
+    }
+
+    .media {
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      min-height: 360px;
+    }
+
+    .media img {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-scroll {
+      display: grid;
+      gap: 10px;
+      overflow: hidden;
+      padding: 8px 4px 2px;
+    }
+
+    .gallery-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(96px, 120px);
+      gap: 10px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+    }
+
+    .gallery-track::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery-track::-webkit-scrollbar-thumb {
+      background: #c9b29d;
+      border-radius: 999px;
+    }
+
+    .gallery-item {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      scroll-snap-align: start;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px -18px rgba(0, 0, 0, 0.35);
+      opacity: 0.82;
+      transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-item:hover,
+    .gallery-item.is-active {
+      opacity: 1;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px -18px rgba(0, 0, 0, 0.35);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 92px;
+      min-height: 92px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .content {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      color: var(--title);
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15;
+    }
+
+    .rating {
+      color: var(--accent);
+      font-size: 18px;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
+
+    .rating small {
+      color: var(--muted);
+      letter-spacing: 0;
+      margin-left: 6px;
+      font-size: 16px;
+    }
+
+    .desc {
+      margin: 0 0 16px;
+      line-height: 1.6;
+      color: #3b3b3b;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fafafa;
+      margin-bottom: 18px;
+      text-align: center;
+      font-size: 14px;
+      color: #414141;
+    }
+
+    .price {
+      margin: 0;
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .shipping {
+      margin: 8px 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .qty-row {
+      display: inline-flex;
+      border: 1px solid #bdbdbd;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .qty-btn,
+    .qty-input {
+      border: 0;
+      background: #fff;
+      height: 40px;
+      width: 40px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .qty-btn {
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .qty-btn:hover {
+      background: #f2eee9;
+    }
+
+    .qty-input {
+      width: 54px;
+      border-inline: 1px solid #bdbdbd;
+    }
+
+    .action {
+      display: grid;
+      gap: 10px;
+    }
+
+    .btn {
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #222;
+    }
+
+    .btn-buy {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-wishlist {
+      background: #fff;
+      color: var(--accent-dark);
+      border-color: #d7b18a;
+    }
+
+    .btn-row {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .btn-buy:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 16px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .info-sections {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .info-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fafafa;
+      padding: 18px;
+    }
+
+    .info-card h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: var(--title);
+    }
+
+    .info-card h3 {
+      margin: 14px 0 8px;
+      font-size: 16px;
+      color: var(--accent-dark);
+    }
+
+    .info-card p,
+    .info-card li {
+      margin: 0;
+      line-height: 1.7;
+      color: #3b3b3b;
+    }
+
+    .info-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .nutritional-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .nutritional-item {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .nutritional-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent-dark);
+    }
+
+    @media (min-width: 700px) {
+      .nutritional-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 900px) {
+      .details {
+        grid-template-columns: minmax(360px, 1.05fr) minmax(360px, 1fr);
+        align-items: start;
+      }
+
+      .content {
+        min-height: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="details">
+      <div class="media-wrap">
+        <figure class="media">
+          <img id="image" alt="Mushroom product image">
+        </figure>
+        <div class="gallery-scroll">
+          <p class="gallery-label">Scroll through more photos</p>
+          <div class="gallery-track" id="galleryTrack" aria-label="Product image gallery"></div>
+        </div>
+      </div>
+
+      <article class="content">
+        <h1 id="name"></h1>
+        <p class="rating">★★★★★<small><span id="reviews"></span> review</small></p>
+        <p id="desc" class="desc"></p>
+
+        <div class="meta">
+          <span id="pack"></span>
+          <span id="pieces"></span>
+          <span id="serves"></span>
+        </div>
+
+        <p id="price" class="price"></p>
+        <p class="shipping">Shipping calculated at checkout.</p>
+
+        <div class="qty-row" aria-label="Quantity selector">
+          <button class="qty-btn" type="button">-</button>
+          <input class="qty-input" type="text" value="1" aria-label="Quantity" readonly>
+          <button class="qty-btn" type="button">+</button>
+        </div>
+
+        <div class="action">
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Add to cart</button>
+            <button class="btn btn-wishlist" type="button">Add to wishlist</button>
+          </div>
+          <button class="btn btn-buy" type="button">Buy Now</button>
+        </div>
+
+        <a class="back" href="./shop.html">← Back to Shop</a>
+
+        <div class="info-sections">
+          <section class="info-card">
+            <h2>Product Information</h2>
+            <h3>Benefits</h3>
+            <p>Enjoy the rich, earthy taste of Cremini Mushrooms, also known as Baby Bellas or Baby Portobellos. These mushrooms offer a deeper umami flavor and firmer texture than white button mushrooms, making them a versatile choice for a variety of dishes.</p>
+            <h3>Features</h3>
+            <p>Cremini mushrooms are ideal for high-heat cooking, and their savory, full-bodied taste pairs beautifully with meats, vegetables, and grains.</p>
+          </section>
+
+          <section class="info-card">
+            <h2>Nutritional Information</h2>
+            <p>Nutritional Information: (Values per 100 g)</p>
+            <div class="nutritional-grid">
+              <div class="nutritional-item"><strong>Total Energy</strong><span>23 g</span></div>
+              <div class="nutritional-item"><strong>Carbohydrate</strong><span>4 g</span></div>
+              <div class="nutritional-item"><strong>Fat</strong><span>0 g</span></div>
+              <div class="nutritional-item"><strong>Protein</strong><span>3 g</span></div>
+            </div>
+          </section>
+
+          <section class="info-card">
+            <h2>Shelf life</h2>
+            <p>4-5 Days</p>
+            <h3>Storage Tip</h3>
+            <p>Referigerate it</p>
+          </section>
+
+          <section class="info-card">
+            <h2>Disclaimer</h2>
+            <p>Store mushrooms in a cool, dry environment. For longer-lasting freshness, keep fresh mushrooms in a paper bag in the refrigerator. To enjoy them at their best, consume mushrooms within a few days of purchase. Steer clear of any mushrooms that appear slimy, discolored, or have a strong smell.</p>
+          </section>
+
+          <section class="info-card">
+            <h2>How to use</h2>
+            <h3>Cooking Tips</h3>
+            <p>Clean gently with a damp paper towel. Sauté in butter or olive oil until golden brown for a rich, savory dish. Season with salt, pepper, and herbs to enhance flavor.</p>
+            <h3>Serve Suggestions</h3>
+            <p>Add to stir-fries, top pizzas, or toss in salads. For a gourmet touch, sauté with butter, thyme, and a splash of white wine.</p>
+          </section>
+
+          <section class="info-card">
+            <h2>Where to Use</h2>
+            <ul>
+              <li>Stir-fries and noodle bowls</li>
+              <li>Pastas, risottos, and grain bowls</li>
+              <li>Pizza toppings and baked dishes</li>
+              <li>Soups, sauces, and creamy skillet meals</li>
+            </ul>
+          </section>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const data = {
+      button: {
+        name: "Button/White Button Mushroom",
+        images: [
+          "../assets/images/Button_Mushroom/button_mushroom_1.png",
+          "../assets/images/Button_Mushroom/button_mushroom_2.png"
+        ],
+        desc: "100% pure button mushrooms, ideal for saute, curries, pasta, and grills.",
+        price: "Rs. 100.00",
+        pack: "200 Gm",
+        pieces: "6-10 pieces",
+        serves: "Serves 2",
+        reviews: 4
+      },
+      oyster: {
+        name: "Oyster Mushroom",
+        images: [
+          "../assets/images/Oyster_Mushroom/oyster_mushroom_1.png",
+          "../assets/images/Oyster_Mushroom/oyster_mushroom_2.png"
+        ],
+        desc: "Fresh oyster mushrooms with a soft texture and delicate umami flavor.",
+        price: "Rs. 120.00",
+        pack: "200 Gm",
+        pieces: "5-7 pieces",
+        serves: "Serves 2",
+        reviews: 3
+      },
+      enoki: {
+        name: "Enoki Mushroom",
+        images: [
+          "../assets/images/Enoki_Mushroom/enoki_mushroom_1.png",
+          "../assets/images/Enoki_Mushroom/enoki_mushroom_2.png"
+        ],
+        desc: "Crisp enoki strands perfect for soups, stir-fries, and noodle bowls.",
+        price: "Rs. 150.00",
+        pack: "100 Gm",
+        pieces: "Fine cluster",
+        serves: "Serves 2",
+        reviews: 2
+      },
+      shiitake: {
+        name: "Shiitake Mushroom",
+        images: [
+          "../assets/images/Shiitake_Mushroom/shiitake_mushroom_1.png",
+          "../assets/images/Shiitake_Mushroom/shiitake_mushroom_2.png"
+        ],
+        desc: "Premium shiitake mushrooms with rich aroma and deep savory taste.",
+        price: "Rs. 350.00",
+        pack: "200 Gm",
+        pieces: "6-8 pieces",
+        serves: "Serves 2",
+        reviews: 5
+      },
+      portobello: {
+        name: "Portobello Mushroom",
+        images: [
+          "../assets/images/Portobello_Mushroom/portobello_mushroom_1.png",
+          "../assets/images/Portobello_Mushroom/portobello_mushroom_2.png"
+        ],
+        desc: "Large, meaty caps that work great for grilling and stuffing recipes.",
+        price: "Rs. 300.00",
+        pack: "200 Gm",
+        pieces: "2-3 pieces",
+        serves: "Serves 2",
+        reviews: 4
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const item = params.get("item");
+    const product = data[item] || data.button;
+
+    document.title = `${product.name} | MycoMart`;
+    document.getElementById("name").innerText = product.name;
+    const mainImage = document.getElementById("image");
+    const galleryTrack = document.getElementById("galleryTrack");
+
+    mainImage.src = product.images[0];
+    document.getElementById("desc").innerText = product.desc;
+    document.getElementById("price").innerText = product.price;
+    document.getElementById("pack").innerText = product.pack;
+    document.getElementById("pieces").innerText = product.pieces;
+    document.getElementById("serves").innerText = product.serves;
+    document.getElementById("reviews").innerText = product.reviews;
+
+    const quantityInput = document.querySelector(".qty-input");
+    const quantityButtons = document.querySelectorAll(".qty-btn");
+
+    quantityButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const currentValue = Number.parseInt(quantityInput.value, 10) || 1;
+        if (button.textContent.trim() === "+") {
+          quantityInput.value = String(currentValue + 1);
+        } else {
+          quantityInput.value = String(Math.max(1, currentValue - 1));
+        }
+      });
+    });
+
+    const setActiveImage = (image, button) => {
+      mainImage.src = image;
+      galleryTrack.querySelectorAll(".gallery-item").forEach((itemButton) => {
+        itemButton.classList.remove("is-active");
+      });
+      button.classList.add("is-active");
+    };
+
+    product.images.forEach((image, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `gallery-item${index === 0 ? " is-active" : ""}`;
+      button.setAttribute("aria-label", `Show image ${index + 1} of ${product.name}`);
+      button.innerHTML = `<img src="${image}" alt="${product.name} image ${index + 1}">`;
+      button.addEventListener("click", () => setActiveImage(image, button));
+      galleryTrack.appendChild(button);
+    });
+  </script>
+</body>
+</html>

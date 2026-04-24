@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MycoMart — Blog</title>
+
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/home.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;500;700&display=swap"
+		rel="stylesheet">
+
+	<style>
+		.blog-hero {
+			background: linear-gradient(135deg, var(--cream) 0%, var(--linen) 45%, #eef7f1 100%);
+			padding-block: 72px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.blog-hero::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background-image:
+				radial-gradient(circle at 20% 20%, rgba(16, 130, 117, 0.10) 0 6px, transparent 7px),
+				radial-gradient(circle at 80% 30%, rgba(188, 108, 37, 0.12) 0 8px, transparent 9px),
+				radial-gradient(circle at 65% 75%, rgba(16, 130, 117, 0.08) 0 10px, transparent 11px);
+			pointer-events: none;
+		}
+
+		.blog-hero-grid {
+			position: relative;
+			z-index: 1;
+			display: grid;
+			gap: 28px;
+			align-items: center;
+		}
+
+		.blog-hero-copy {
+			max-width: 62ch;
+		}
+
+		.blog-kicker {
+			color: var(--amber-primary);
+			font-family: var(--ff-display);
+			font-style: italic;
+			font-weight: var(--fw-700);
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			margin-block-end: 12px;
+		}
+
+		.blog-title {
+			color: var(--soil-dark);
+			font-size: clamp(3rem, 4vw, 5rem);
+			line-height: 1.05;
+			margin-block-end: 16px;
+		}
+
+		.blog-text {
+			color: var(--muted-taupe);
+			font-size: 1.8rem;
+			line-height: 1.8;
+			margin-block-end: 26px;
+		}
+
+		.blog-hero-card {
+			background: rgba(255, 255, 255, 0.7);
+			border: 1px solid rgba(16, 130, 117, 0.14);
+			border-radius: 24px;
+			padding: 24px;
+			box-shadow: 0 24px 48px -28px rgba(20, 40, 32, 0.35);
+			backdrop-filter: blur(8px);
+		}
+
+		.blog-hero-card h3 {
+			color: var(--violet-deep);
+			font-size: 2.4rem;
+			margin-block-end: 10px;
+		}
+
+		.blog-hero-card p {
+			color: var(--sonic-silver);
+			line-height: 1.8;
+		}
+
+		.feature-grid {
+			display: grid;
+			gap: 24px;
+		}
+
+		.feature-card {
+			background: var(--cream);
+			border-radius: 20px;
+			padding: 24px;
+			border: 1px solid var(--linen);
+			box-shadow: 0 18px 30px -24px rgba(20, 40, 32, 0.22);
+		}
+
+		.feature-card h3 {
+			color: var(--violet-deep);
+			font-size: 2rem;
+			margin-block-end: 12px;
+		}
+
+		.feature-card p,
+		.feature-list {
+			color: var(--sonic-silver);
+			line-height: 1.8;
+		}
+
+		.feature-list {
+			padding-left: 18px;
+		}
+
+		.feature-list li {
+			list-style: disc;
+			margin-block-end: 8px;
+		}
+
+		.product-card .card-banner .product-shot {
+			position: relative;
+			width: 180px;
+			height: 180px;
+			margin: auto;
+			border-radius: 16px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: linear-gradient(145deg, #f7efe3, #efe2cf);
+			font-size: 6.4rem;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+		}
+
+		.product-card .card-banner .product-shot img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		.product-shot .price-badge {
+			position: absolute;
+			left: 10px;
+			right: 10px;
+			bottom: 10px;
+			padding: 8px 10px;
+			border-radius: 12px;
+			background: rgba(12, 27, 23, 0.72);
+			color: #fff;
+			text-align: center;
+			backdrop-filter: blur(4px);
+		}
+
+		.price-badge strong {
+			display: block;
+			font-size: 1.35rem;
+			font-weight: var(--fw-700);
+			line-height: 1.2;
+		}
+
+		.price-badge span {
+			display: block;
+			font-size: 1.15rem;
+			opacity: 0.92;
+		}
+
+		.blog-section {
+			padding-block: 72px;
+		}
+
+		.blog-section .section-title {
+			margin-block-end: 18px;
+		}
+
+		.blog-grid {
+			display: grid;
+			gap: 28px;
+		}
+
+		@media (min-width: 768px) {
+			.blog-hero-grid {
+				grid-template-columns: 1.15fr 0.85fr;
+			}
+
+			.feature-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			.blog-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+		@media (min-width: 1200px) {
+			.blog-grid {
+				grid-template-columns: repeat(4, 1fr);
+			}
+		}
+	</style>
+</head>
+
+<body id="top">
+
+	<header class="header" data-header>
+		<div class="nav-wrapper">
+			<div class="container">
+
+				<h1 class="h1">
+					<a href="../index.html" class="logo">Myco<span class="span">Mart</span></a>
+				</h1>
+
+				<button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+					<ion-icon name="menu-outline"></ion-icon>
+				</button>
+
+				<nav class="navbar" data-navbar>
+					<button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+						<ion-icon name="close-outline"></ion-icon>
+					</button>
+					<ul class="navbar-list">
+						<li><a href="../index.html" class="navbar-link">Home</a></li>
+						<li><a href="./shop.html" class="navbar-link">Shop</a></li>
+						<li><a href="./blog.html" class="navbar-link">Blog</a></li>
+						<li><a href="./product-details.html" class="navbar-link">Products</a></li>
+						<li><a href="./contact.html" class="navbar-link">Contact</a></li>
+					</ul>
+				</nav>
+
+				<div class="header-action">
+					<div class="search-wrapper" data-search-wrapper>
+						<button class="header-action-btn" aria-label="Toggle search" data-search-btn>
+							<ion-icon name="search-outline" class="search-icon"></ion-icon>
+							<ion-icon name="close-outline" class="close-icon"></ion-icon>
+						</button>
+						<div class="input-wrapper">
+							<input type="search" name="search" placeholder="Search mushrooms..." class="search-input">
+							<button class="search-submit" aria-label="Submit search">
+								<ion-icon name="search-outline"></ion-icon>
+							</button>
+						</div>
+					</div>
+
+					<button class="header-action-btn" aria-label="Open wishlist" data-panel-btn="wishlist">
+						<ion-icon name="heart-outline"></ion-icon>
+						<data class="btn-badge" value="2" data-wish-badge>02</data>
+					</button>
+
+					<button class="header-action-btn" aria-label="Open shopping cart" data-panel-btn="cart">
+						<ion-icon name="basket-outline"></ion-icon>
+						<data class="btn-badge" value="3" data-cart-badge>03</data>
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</header>
+
+	<div class="overlay" data-overlay></div>
+
+	<aside class="aside">
+		<div class="side-panel" data-side-panel="wishlist">
+			<button class="panel-close-btn" aria-label="Close wishlist" data-panel-btn="wishlist">
+				<ion-icon name="close-outline"></ion-icon>
+			</button>
+			<ul class="panel-list">
+				<li class="panel-item">
+					<a href="./product-details.html" class="panel-card">
+						<figure class="item-banner">
+							<img src="https://placehold.co/46x46/f5ebe0/8B4513?text=🍄" width="46" height="46" loading="lazy" alt="Button Mushroom">
+						</figure>
+						<div>
+							<p class="item-title">Button Mushroom</p>
+							<span class="item-value">₹100.00 × 1</span>
+						</div>
+						<button class="item-close-btn" aria-label="Remove item">
+							<ion-icon name="close-outline"></ion-icon>
+						</button>
+					</a>
+				</li>
+			</ul>
+			<div class="subtotal">
+				<p class="subtotal-text">Subtotal:</p>
+				<data class="subtotal-value" value="100.00">₹100.00</data>
+			</div>
+			<a href="./wishlist.html" class="panel-btn">View Wishlist</a>
+		</div>
+
+		<div class="side-panel" data-side-panel="cart">
+			<button class="panel-close-btn" aria-label="Close cart" data-panel-btn="cart">
+				<ion-icon name="close-outline"></ion-icon>
+			</button>
+			<ul class="panel-list">
+				<li class="panel-item">
+					<a href="./product-details.html" class="panel-card">
+						<figure class="item-banner">
+							<img src="../assets/images/Button_Mushroom/button_mushroom_1.png" width="46" height="46" loading="lazy" alt="Button Mushroom">
+						</figure>
+						<div>
+							<p class="item-title">Button Mushroom</p>
+							<span class="item-value">₹100.00 × 1</span>
+						</div>
+						<button class="item-close-btn" aria-label="Remove item">
+							<ion-icon name="close-outline"></ion-icon>
+						</button>
+					</a>
+				</li>
+			</ul>
+			<div class="subtotal">
+				<p class="subtotal-text">Subtotal:</p>
+				<data class="subtotal-value" value="100.00">₹100.00</data>
+			</div>
+			<a href="./cart.html" class="panel-btn">View Cart</a>
+		</div>
+	</aside>
+
+	<main>
+		<article>
+			<section class="blog-hero">
+				<div class="container">
+					<div class="blog-hero-grid">
+						<div class="blog-hero-copy">
+							<p class="blog-kicker">Button Mushroom Journal</p>
+							<h2 class="blog-title">Fresh ideas, simple recipes, and the best mushrooms for everyday cooking.</h2>
+							<p class="blog-text">
+								Button mushrooms are the easiest entry point into mushroom cooking: mild, versatile, and quick to
+								prepare. This page blends a short blog-style story with featured product picks you can add to cart
+								right away.
+							</p>
+							<a href="./shop.html" class="btn btn-primary">
+								<span>Shop Mushrooms</span>
+								<ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+							</a>
+						</div>
+
+						<div class="blog-hero-card">
+							<h3>Why Button Mushroom?</h3>
+							<p>
+								It cooks fast, soaks up flavour well, and works in soups, stir-fries, grills, pasta, and breakfast
+								dishes. If you want a simple mushroom that fits most recipes, this is the one to start with.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section blog-section">
+				<div class="container">
+					<p class="section-subtitle">-- Featured Picks --</p>
+					<h2 class="h2 section-title">Button Mushroom Inspired Collection</h2>
+					<div class="feature-grid">
+						<div class="feature-card">
+							<h3>Cooking notes</h3>
+							<p>Use a hot pan, a little fat, and avoid overcrowding so the mushrooms brown instead of steaming.</p>
+						</div>
+						<div class="feature-card">
+							<h3>Serving idea</h3>
+							<p>Try them in toast, creamy pasta, egg bhurji, or a quick garlic butter sauté.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section blog-section">
+				<div class="container">
+					<p class="section-subtitle">-- Mushroom Products --</p>
+					<h2 class="h2 section-title">Add These Picks to Your Cart</h2>
+
+					
+
+					<ul class="blog-grid">
+						<li>
+							<div class="product-card">
+								<div class="card-banner">
+									<div class="product-shot">
+										<img src="../assets/images/Oyster_Mushroom/oyster_mushroom_1.png" alt="Oyster Mushroom">
+										<div class="price-badge">
+											<strong>Oyster Mushroom</strong>
+											<span>200g - ₹120.00</span>
+										</div>
+									</div>
+									<div class="btn-wrapper">
+										<button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+											<ion-icon name="heart-outline"></ion-icon>
+											<span class="tooltip">Add to Wishlist</span>
+										</button>
+										<button class="product-btn" aria-label="Quick view">
+											<ion-icon name="eye-outline"></ion-icon>
+											<span class="tooltip">Quick View</span>
+										</button>
+									</div>
+								</div>
+								<div class="rating-wrapper">
+									<ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon>
+								</div>
+								<h3 class="h3 card-title"><a href="./details.html?item=oyster">Oyster_Mushroom</a></h3>
+								<div class="price-wrapper">
+									<span class="price">₹120.00</span>
+								</div>
+								<button class="btn btn-primary" data-add-cart>
+									<span>Add to Cart</span>
+									<ion-icon name="basket-outline"></ion-icon>
+								</button>
+							</div>
+						</li>
+
+						<li>
+							<div class="product-card">
+								<div class="card-banner">
+									<div class="product-shot">
+										<img src="../assets/images/Enoki_Mushroom/enoki_mushroom_1.png" alt="Enoki Mushroom">
+										<div class="price-badge">
+											<strong>Enoki Mushroom</strong>
+											<span>100g - ₹150.00</span>
+										</div>
+									</div>
+									<div class="btn-wrapper">
+										<button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+											<ion-icon name="heart-outline"></ion-icon>
+											<span class="tooltip">Add to Wishlist</span>
+										</button>
+										<button class="product-btn" aria-label="Quick view">
+											<ion-icon name="eye-outline"></ion-icon>
+											<span class="tooltip">Quick View</span>
+										</button>
+									</div>
+								</div>
+								<div class="rating-wrapper">
+									<ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon>
+								</div>
+								<h3 class="h3 card-title"><a href="./details.html?item=enoki">Enoki_Mushroom</a></h3>
+								<div class="price-wrapper">
+									<span class="price">₹150.00</span>
+								</div>
+								<button class="btn btn-primary" data-add-cart>
+									<span>Add to Cart</span>
+									<ion-icon name="basket-outline"></ion-icon>
+								</button>
+							</div>
+						</li>
+
+						<li>
+							<div class="product-card">
+								<div class="card-banner">
+									<div class="product-shot">
+										<img src="../assets/images/Shiitake_Mushroom/shiitake_mushroom_1.png" alt="Shiitake Mushroom">
+										<div class="price-badge">
+											<strong>Shiitake Mushroom</strong>
+											<span>200g - ₹350.00</span>
+										</div>
+									</div>
+									<div class="btn-wrapper">
+										<button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+											<ion-icon name="heart-outline"></ion-icon>
+											<span class="tooltip">Add to Wishlist</span>
+										</button>
+										<button class="product-btn" aria-label="Quick view">
+											<ion-icon name="eye-outline"></ion-icon>
+											<span class="tooltip">Quick View</span>
+										</button>
+									</div>
+								</div>
+								<div class="rating-wrapper">
+									<ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon>
+								</div>
+								<h3 class="h3 card-title"><a href="./details.html?item=shiitake">Shiitake_Mushroom</a></h3>
+								<div class="price-wrapper">
+									<span class="price">₹350.00</span>
+								</div>
+								<button class="btn btn-primary" data-add-cart>
+									<span>Add to Cart</span>
+									<ion-icon name="basket-outline"></ion-icon>
+								</button>
+							</div>
+						</li>
+
+						<li>
+							<div class="product-card">
+								<div class="card-banner">
+									<div class="product-shot">
+										<img src="../assets/images/Portobello_Mushroom/portobello_mushroom_1.png" alt="Portobello Mushroom">
+										<div class="price-badge">
+											<strong>Portobello Mushroom</strong>
+											<span>200g - ₹300.00</span>
+										</div>
+									</div>
+									<div class="btn-wrapper">
+										<button class="product-btn" aria-label="Add to wishlist" data-add-wish>
+											<ion-icon name="heart-outline"></ion-icon>
+											<span class="tooltip">Add to Wishlist</span>
+										</button>
+										<button class="product-btn" aria-label="Quick view">
+											<ion-icon name="eye-outline"></ion-icon>
+											<span class="tooltip">Quick View</span>
+										</button>
+									</div>
+								</div>
+								<div class="rating-wrapper">
+									<ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon>
+								</div>
+								<h3 class="h3 card-title"><a href="./details.html?item=portobello">Portobello_Mushroom</a></h3>
+								<div class="price-wrapper">
+									<span class="price">₹300.00</span>
+								</div>
+								<button class="btn btn-primary" data-add-cart>
+									<span>Add to Cart</span>
+									<ion-icon name="basket-outline"></ion-icon>
+								</button>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</article>
+	</main>
+
+	<script src="../assets/js/script.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

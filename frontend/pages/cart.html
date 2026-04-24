@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MycoMart - Cart</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/home.css">
+  <style>
+    :root {
+      --bg: #eeeeee;
+      --text: #2f2f2f;
+      --muted: #6d6d6d;
+      --line: #dadada;
+      --btn: #bf7428;
+      --btn-hover: #a96421;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .cart-wrap {
+      max-width: 1100px;
+      margin: 44px auto;
+      padding: 0 24px;
+    }
+
+    .cart-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .cart-top h1 {
+      margin: 0;
+      font-size: 3.5rem;
+      font-weight: 500;
+    }
+
+    .continue-link {
+      color: #1f1f1f;
+      text-decoration: underline;
+      font-size: 2rem;
+      text-underline-offset: 3px;
+    }
+
+    .cart-head,
+    .cart-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 0.9fr;
+      align-items: center;
+    }
+
+    .cart-head {
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 1.5rem;
+    }
+
+    .cart-row {
+      padding: 30px 0;
+    }
+
+    .product-cell {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .product-img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border: 1px solid #cfcfcf;
+    }
+
+    .product-title {
+      margin: 0 0 6px;
+      font-size: 2.7rem;
+      font-weight: 500;
+    }
+
+    .product-price {
+      margin: 0;
+      font-size: 2.4rem;
+    }
+
+    .qty-group {
+      display: inline-flex;
+      border: 1px solid #9f9f9f;
+      align-items: center;
+    }
+
+    .qty-btn,
+    .qty-value {
+      width: 48px;
+      height: 44px;
+      border: 0;
+      background: transparent;
+      font-size: 2.2rem;
+      color: #333;
+    }
+
+    .qty-btn {
+      cursor: pointer;
+    }
+
+    .qty-btn:hover {
+      background: #e6e6e6;
+    }
+
+    .qty-value {
+      display: grid;
+      place-items: center;
+      border-inline: 1px solid #b9b9b9;
+      font-size: 2rem;
+    }
+
+    .qty-cell {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .remove-btn {
+      border: 0;
+      background: transparent;
+      font-size: 2rem;
+      color: #444;
+      cursor: pointer;
+      line-height: 1;
+      padding: 2px;
+    }
+
+    .remove-btn:hover {
+      color: #000;
+    }
+
+    .total-cell {
+      text-align: right;
+      font-size: 2.6rem;
+      color: #111;
+      font-weight: 600;
+    }
+
+    .cart-divider {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 24px 0 34px;
+    }
+
+    .checkout-box {
+      margin-left: auto;
+      max-width: 430px;
+      text-align: right;
+    }
+
+    .estimate {
+      font-size: 2.8rem;
+      margin: 0 0 10px;
+    }
+
+    .note {
+      margin: 0 0 20px;
+      color: #6d6d6d;
+      font-size: 1.7rem;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background: var(--btn);
+      color: #fff;
+      border: 0;
+      border-radius: 14px;
+      height: 58px;
+      font-size: 2.3rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .checkout-btn:hover {
+      background: var(--btn-hover);
+    }
+
+    @media (max-width: 900px) {
+      .cart-top h1 {
+        font-size: 2.9rem;
+      }
+
+      .continue-link {
+        font-size: 1.7rem;
+      }
+
+      .cart-head {
+        display: none;
+      }
+
+      .cart-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .total-cell {
+        text-align: left;
+      }
+
+      .checkout-box {
+        max-width: 100%;
+        text-align: left;
+      }
+
+      .estimate,
+      .note {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header" data-header>
+    <div class="nav-wrapper">
+      <div class="container">
+        <h1 class="h1">
+          <a href="../index.html" class="logo">Myco<span class="span">Mart</span></a>
+        </h1>
+
+        <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <nav class="navbar" data-navbar>
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <ul class="navbar-list">
+            <li><a href="../index.html" class="navbar-link">Home</a></li>
+            <li><a href="./shop.html" class="navbar-link">Shop</a></li>
+            <li><a href="./blog.html" class="navbar-link">Blog</a></li>
+            <li><a href="./product-details.html?item=shiitake" class="navbar-link">Products</a></li>
+            <li><a href="./contact.html" class="navbar-link">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-action">
+          <button class="header-action-btn" aria-label="Open wishlist" onclick="window.location.href='./wishlist.html'">
+            <ion-icon name="heart-outline"></ion-icon>
+            <data class="btn-badge" value="2" data-wish-badge>02</data>
+          </button>
+          <button class="header-action-btn" aria-label="Open shopping cart" onclick="window.location.href='./cart.html'">
+            <ion-icon name="basket-outline"></ion-icon>
+            <data class="btn-badge" value="3" data-cart-badge>03</data>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="overlay" data-overlay></div>
+
+  <main class="cart-wrap">
+    <div class="cart-top">
+      <h1>Your cart</h1>
+      <a class="continue-link" href="./shop.html">Continue shopping</a>
+    </div>
+
+    <section class="cart-head">
+      <div>Product</div>
+      <div>Quantity</div>
+      <div style="text-align:right;">Total</div>
+    </section>
+
+    <div id="cartRows"></div>
+
+    <hr class="cart-divider">
+
+    <section class="checkout-box">
+      <p class="estimate">Estimated total &nbsp;&nbsp; <strong id="estimatedTotal">Rs. 240.00</strong></p>
+      <p class="note">Taxes, discounts and shipping calculated at checkout.</p>
+      <button class="checkout-btn" type="button" id="checkoutBtn">Check out</button>
+    </section>
+  </main>
+
+  <footer class="footer" style="margin-top: 0;">
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">&copy; 2026 <a href="#" class="copyright-link">MycoMart</a>. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/script.js"></script>
+
+  <script>
+    const API_BASE = localStorage.getItem('mycomart_api_base') || 'http://localhost:5000/api';
+    const cartRowsNode = document.getElementById('cartRows');
+    const estimatedTotalNode = document.getElementById('estimatedTotal');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    const readCart = () => {
+      try {
+        const raw = localStorage.getItem('mycomart_cart');
+        return raw ? JSON.parse(raw) : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const writeCart = (cart) => localStorage.setItem('mycomart_cart', JSON.stringify(cart));
+
+    const normalize = (value = '') => value.toLowerCase().replace(/[_\s-]+/g, ' ').trim();
+
+    const formatRs = (value) => `Rs. ${value.toFixed(2)}`;
+
+    const getGrandTotal = (cart) => {
+      return cart.reduce((sum, item) => sum + ((Number(item.price) || 0) * (Number(item.qty) || 0)), 0);
+    };
+
+    const renderCart = () => {
+      const cart = readCart();
+
+      if (cart.length === 0) {
+        cartRowsNode.innerHTML = '<section class="cart-row"><div class="product-cell"><div><p class="product-title">Your cart is empty</p><p class="product-price">Add mushrooms from the shop to continue.</p></div></div></section>';
+        estimatedTotalNode.textContent = formatRs(0);
+        return;
+      }
+
+      cartRowsNode.innerHTML = cart.map((item, index) => {
+        const price = Number(item.price) || 0;
+        const qty = Math.max(1, Number(item.qty) || 1);
+        const rowTotal = price * qty;
+        const image = item.image || '../assets/images/Button_Mushroom/button_mushroom_1.png';
+        return `
+          <section class="cart-row" data-index="${index}">
+            <div class="product-cell">
+              <img class="product-img" src="${image}" alt="${item.name || 'Mushroom'}">
+              <div>
+                <p class="product-title">${item.name || 'Mushroom'}</p>
+                <p class="product-price">${formatRs(price)}</p>
+              </div>
+            </div>
+
+            <div class="qty-cell">
+              <div class="qty-group">
+                <button class="qty-btn" type="button" data-step="-1">-</button>
+                <div class="qty-value" data-qty>${qty}</div>
+                <button class="qty-btn" type="button" data-step="1">+</button>
+              </div>
+              <button class="remove-btn" type="button" aria-label="Remove item">🗑</button>
+            </div>
+
+            <div class="total-cell" data-row-total>${formatRs(rowTotal)}</div>
+          </section>
+        `;
+      }).join('');
+
+      estimatedTotalNode.textContent = formatRs(getGrandTotal(cart));
+
+      cartRowsNode.querySelectorAll('.cart-row').forEach((row) => {
+        const index = Number(row.getAttribute('data-index'));
+        const qtyNode = row.querySelector('[data-qty]');
+
+        row.querySelectorAll('[data-step]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const cartData = readCart();
+            const step = Number(btn.getAttribute('data-step'));
+            const current = Number(cartData[index]?.qty) || 1;
+            cartData[index].qty = Math.max(1, current + step);
+            writeCart(cartData);
+            qtyNode.textContent = String(cartData[index].qty);
+            row.querySelector('[data-row-total]').textContent = formatRs((Number(cartData[index].price) || 0) * cartData[index].qty);
+            estimatedTotalNode.textContent = formatRs(getGrandTotal(cartData));
+          });
+        });
+
+        row.querySelector('.remove-btn').addEventListener('click', () => {
+          const cartData = readCart();
+          cartData.splice(index, 1);
+          writeCart(cartData);
+          renderCart();
+        });
+      });
+    };
+
+    const ensureProductIds = async (items) => {
+      const unresolved = items.filter((item) => !item.product);
+      if (unresolved.length === 0) return items;
+
+      const res = await fetch(`${API_BASE}/products?limit=100`);
+      const data = await res.json();
+      const products = Array.isArray(data.products) ? data.products : [];
+
+      const nextItems = items.map((item) => {
+        if (item.product) return item;
+        const match = products.find((p) => {
+          const a = normalize(p.name || '');
+          const b = normalize(item.name || '');
+          return a.includes(b) || b.includes(a);
+        });
+        return { ...item, product: match?._id || null };
+      });
+
+      writeCart(nextItems);
+      return nextItems;
+    };
+
+    checkoutBtn.addEventListener('click', async () => {
+      const token = localStorage.getItem('mycomart_token');
+      if (!token) {
+        const redirect = `${window.location.pathname}${window.location.search}`;
+        window.location.href = `./login.html?redirect=${encodeURIComponent(redirect)}`;
+        return;
+      }
+
+      checkoutBtn.disabled = true;
+      checkoutBtn.textContent = 'Processing...';
+
+      try {
+        let cartData = readCart();
+        if (cartData.length === 0) {
+          alert('Your cart is empty.');
+          return;
+        }
+
+        cartData = await ensureProductIds(cartData);
+
+        if (cartData.some((item) => !item.product)) {
+          alert('Some items are not mapped to backend products yet. Please re-add those products from shop.');
+          return;
+        }
+
+        const user = JSON.parse(localStorage.getItem('mycomart_user') || '{}');
+
+        const orderItems = cartData.map((item) => ({
+          product: item.product,
+          name: item.name,
+          image: item.image,
+          price: Number(item.price) || 0,
+          qty: Math.max(1, Number(item.qty) || 1),
+          weightOption: item.weightOption || '200g',
+        }));
+
+        const payload = {
+          orderItems,
+          shippingAddress: {
+            fullName: user.name || 'MycoMart Customer',
+            phone: localStorage.getItem('mycomart_user_phone') || '0000000000',
+            line1: 'MycoMart Pickup Point',
+            city: 'Bengaluru',
+            state: 'Karnataka',
+            pinCode: '560001',
+            country: 'India',
+          },
+          paymentMethod: 'COD',
+        };
+
+        const res = await fetch(`${API_BASE}/orders`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || 'Unable to create order');
+        }
+
+        localStorage.removeItem('mycomart_cart');
+        renderCart();
+        alert(`Order placed successfully! Order ID: ${data._id}`);
+      } catch (error) {
+        alert(error.message || 'Order failed. Please try again.');
+      } finally {
+        checkoutBtn.disabled = false;
+        checkoutBtn.textContent = 'Check out';
+      }
+    });
+
+    renderCart();
+  </script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,592 @@
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MycoMart — Shiitake Premium Pack</title>
+
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/product-details.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <style>
+      .viewer-3d {
+        width: 100%;
+        height: 290px;
+        background: #ffffff;
+        border: 1px solid var(--parchment);
+        border-radius: var(--radius-6);
+        box-shadow: 0 10px 24px -18px rgba(0, 0, 0, 0.35);
+        margin-block-end: 14px;
+      }
+
+      .review-text {
+        font-size: 1.4rem;
+        color: var(--muted-taupe);
+        margin-inline-start: 8px;
+      }
+    </style>
+  </head>
+
+  <body id="top">
+
+    <!-- ========== HEADER (same as index) ========== -->
+
+    <header class="header" data-header>
+
+    
+
+      <div class="nav-wrapper">
+        <div class="container">
+
+          <h1 class="h1">
+            <a href="../index.html" class="logo">Myco<span class="span">Mart</span></a>
+          </h1>
+
+          <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
+
+          <nav class="navbar" data-navbar>
+            <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <ul class="navbar-list">
+              <li><a href="../index.html" class="navbar-link">Home</a></li>
+              <li><a href="./shop.html" class="navbar-link">Shop</a></li>
+              <li><a href="./blog.html" class="navbar-link">Blog</a></li>
+              <li><a href="./shop.html" class="navbar-link">Products</a></li>
+              <li><a href="./contact.html" class="navbar-link">Contact</a></li>
+            </ul>
+          </nav>
+
+          <div class="header-action">
+            <div class="search-wrapper" data-search-wrapper>
+              <button class="header-action-btn" aria-label="Toggle search" data-search-btn>
+                <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                <ion-icon name="close-outline" class="close-icon"></ion-icon>
+              </button>
+              <div class="input-wrapper">
+                <input type="search" name="search" placeholder="Search mushrooms..." class="search-input">
+                <button class="search-submit" aria-label="Submit search">
+                  <ion-icon name="search-outline"></ion-icon>
+                </button>
+              </div>
+            </div>
+
+            <button class="header-action-btn" aria-label="Open wishlist" data-panel-btn="wishlist">
+              <ion-icon name="heart-outline"></ion-icon>
+              <data class="btn-badge" value="2" data-wish-badge>02</data>
+            </button>
+
+            <button class="header-action-btn" aria-label="Open shopping cart" data-panel-btn="cart">
+              <ion-icon name="basket-outline"></ion-icon>
+              <data class="btn-badge" value="3" data-cart-badge>03</data>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </header>
+
+    <div class="overlay" data-overlay></div>
+
+    <!-- ========== ASIDE PANELS ========== -->
+    <aside class="aside">
+      <div class="side-panel" data-side-panel="wishlist">
+        <button class="panel-close-btn" data-panel-btn="wishlist">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <ul class="panel-list">
+          <li class="panel-item">
+            <a href="#" class="panel-card">
+              <figure class="item-banner">
+                <img src="https://placehold.co/46x46/f5ebe0/8B4513?text=🍄" width="46" height="46" loading="lazy" alt="Shiitake">
+              </figure>
+              <div>
+                <p class="item-title">Shiitake Premium Pack</p>
+                <span class="item-value">₹350.00 × 1</span>
+              </div>
+              <button class="item-close-btn"><ion-icon name="close-outline"></ion-icon></button>
+            </a>
+          </li>
+        </ul>
+        <div class="subtotal">
+          <p class="subtotal-text">Subtotal:</p>
+            <data class="subtotal-value" value="350.00">₹350.00</data>
+        </div>
+        <a href="./wishlist.html" class="panel-btn">View Wishlist</a>
+      </div>
+
+      <div class="side-panel" data-side-panel="cart">
+        <button class="panel-close-btn" data-panel-btn="cart">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <ul class="panel-list">
+          <li class="panel-item">
+            <a href="#" class="panel-card">
+              <figure class="item-banner">
+                <img src="https://placehold.co/46x46/f5ebe0/8B4513?text=🍄" width="46" height="46" loading="lazy" alt="Shiitake">
+              </figure>
+              <div>
+                <p class="item-title">Shiitake Premium Pack</p>
+                <span class="item-value">₹350.00 × 1</span>
+              </div>
+              <button class="item-close-btn"><ion-icon name="close-outline"></ion-icon></button>
+            </a>
+          </li>
+        </ul>
+        <div class="subtotal">
+          <p class="subtotal-text">Subtotal:</p>
+            <data class="subtotal-value" value="350.00">₹350.00</data>
+        </div>
+        <a href="./cart.html" class="panel-btn">View Cart</a>
+      </div>
+    </aside>
+
+
+    <main>
+
+      <!-- Breadcrumb -->
+      <div class="breadcumb-wrapper">
+        <h2 class="h2 page-title">Product Details</h2>
+        <ul class="breadcumb-list">
+          <li class="breadcumb-item">
+            <a href="../index.html" class="breadcumb-link">Home</a>
+          </li>
+          <li class="breadcumb-item">
+            <a href="./shop.html" class="breadcumb-link">Shop</a>
+          </li>
+          <li class="breadcumb-item" id="breadcrumbCurrent">Shiitake Mushroom</li>
+        </ul>
+      </div>
+
+
+      <!-- ========== PRODUCT DETAILS ========== -->
+
+      <section class="section product-details">
+        <div class="container">
+
+          <div class="wrapper">
+
+            <!-- Image Gallery -->
+            <div class="product-details-img">
+
+              <model-viewer
+                id="productViewer"
+                class="viewer-3d"
+                src="../assets/models/shiitake.glb"
+                poster="../assets/images/Shiitake_Mushroom/shiitake_mushroom_1.png"
+                alt="Shiitake Mushroom 3D model"
+                auto-rotate
+                camera-controls
+                shadow-intensity="1"
+                exposure="1"
+                environment-image="neutral">
+              </model-viewer>
+
+              <figure class="product-display">
+                <img
+                  src="../assets/images/Shiitake_Mushroom/shiitake_mushroom_1.png"
+                  width="500"
+                  height="450"
+                  loading="lazy"
+                  alt="Shiitake Mushroom"
+                  class="w-100"
+                  id="productMainImage"
+                  data-main-display>
+              </figure>
+
+              <ul class="has-scrollbar product-thumbnail-list" id="productThumbnailList">
+                <li class="product-thumbnail-item active" data-thumbnail>
+                  <img src="../assets/images/Shiitake_Mushroom/shiitake_mushroom_1.png" width="120" height="100" loading="lazy" alt="Shiitake front view">
+                </li>
+                <li class="product-thumbnail-item" data-thumbnail>
+                  <img src="../assets/images/Shiitake_Mushroom/shiitake_mushroom_2.png" width="120" height="100" loading="lazy" alt="Shiitake side view">
+                </li>
+              </ul>
+
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-details-content">
+
+              <div class="product-badges">
+                <span class="badge organic">🌿 Certified Organic</span>
+                <span class="badge fresh">✅ Farm Fresh</span>
+                <span class="badge">🚚 Ships Cold</span>
+              </div>
+
+              <h2 class="product-title" id="productTitle">Shiitake Mushroom</h2>
+                <p class="product-price"><span class="currency" id="productPrice">₹350.00</span></p>
+
+              <div class="rating-wrapper" style="--justify-content:flex-start;margin-block:15px 5px;">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star-half"></ion-icon>
+                <span class="review-text" id="reviewText">(4.5 / 5 — 128 reviews)</span>
+              </div>
+
+              <p class="product-text" id="productSummary">
+                Our Shiitake Premium Pack contains hand-picked, organic shiitake mushrooms grown on natural oak logs. Rich in umami flavour, packed with B vitamins, zinc, and immune-boosting beta-glucans. Perfect for stir-fries, soups, risottos, and grilling.
+              </p>
+
+              <!-- Weight / Size Selector -->
+              <div class="product-weight-wrapper">
+                <p class="product-weight-title">Weight :</p>
+                <ul class="product-weight-list">
+                  <li>
+                    <input type="radio" name="weight" id="w-200g" class="product-weight-radio" value="200g">
+                    <label for="w-200g" class="product-weight-label">200g</label>
+                  </li>
+                  <li>
+                    <input type="radio" name="weight" id="w-500g" class="product-weight-radio" value="500g" checked>
+                    <label for="w-500g" class="product-weight-label">500g</label>
+                  </li>
+                  <li>
+                    <input type="radio" name="weight" id="w-1kg" class="product-weight-radio" value="1kg">
+                    <label for="w-1kg" class="product-weight-label">1 kg</label>
+                  </li>
+                  <li>
+                    <input type="radio" name="weight" id="w-2kg" class="product-weight-radio" value="2kg">
+                    <label for="w-2kg" class="product-weight-label">2 kg</label>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Quantity & Cart -->
+              <div class="product-qty">
+                <input
+                  type="number"
+                  name="qty"
+                  value="1"
+                  min="1"
+                  max="99"
+                  class="product-qty-input"
+                  data-qty-input>
+
+                <button class="btn btn-primary product-qty-btn" data-add-cart>
+                  <span>Add To Cart</span>
+                  <ion-icon name="basket-outline"></ion-icon>
+                </button>
+
+                <button class="btn product-qty-btn" style="--bg-color:var(--cream);--color:var(--amber-primary);border:2px solid var(--amber-primary);margin-inline-start:10px;" data-add-wish>
+                  <ion-icon name="heart-outline"></ion-icon>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Description & Info Tabs -->
+          <div class="product-description">
+
+            <h3 class="description-title">Description</h3>
+            <p class="description-text" id="descriptionOne">
+              Grown on natural oak logs in temperature-controlled growing rooms, our Shiitake mushrooms develop their signature meaty texture and deep, savoury flavour. Each pack is harvested at peak maturity and packed within 24 hours of picking to ensure maximum freshness.
+            </p>
+            <p class="description-text" id="descriptionTwo">
+              Shiitake are one of the most nutritionally dense mushrooms available. A single 100g serving provides 40% of your daily copper needs, significant B6 and B5 (pantothenic acid), plus lentinan — a powerful polysaccharide known for immune modulation. They are also one of the rare plant sources of vitamin D when sun-dried.
+            </p>
+
+            <h3 class="description-title">Additional Information</h3>
+
+            <table class="description-table" border="1">
+              <tbody>
+                <tr>
+                  <th class="table-heading">Attribute</th>
+                  <th class="table-heading">Details</th>
+                </tr>
+                <tr>
+                  <td class="table-heading">Species</td>
+                  <td class="table-data" id="metaSpecies">Lentinula edodes</td>
+                </tr>
+                <tr>
+                  <td class="table-heading">Origin</td>
+                  <td class="table-data" id="metaOrigin">ForestRoots Farm, Karnataka</td>
+                </tr>
+                <tr>
+                  <td class="table-heading">Rating</td>
+                  <td class="table-data" id="metaRating">★★★★½ (4.5/5)</td>
+                </tr>
+                <tr>
+                  <td class="table-heading">Certification</td>
+                  <td class="table-data" id="metaCertification">NPOP Organic Certified</td>
+                </tr>
+                <tr>
+                  <td class="table-heading">Shelf Life</td>
+                  <td class="table-data" id="metaShelfLife">7–10 days refrigerated</td>
+                </tr>
+                <tr>
+                  <td class="table-heading">Storage</td>
+                  <td class="table-data" id="metaStorage">2–8 °C, paper bag preferred</td>
+                </tr>
+                <tr>
+                  <td class="table-heading">Seller</td>
+                  <td class="table-data" id="metaSeller">MycoMart</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- ========== FOOTER ========== -->
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="container">
+
+          <div class="footer-brand">
+            <a href="../index.html" class="logo">Myco<span class="span">Mart</span></a>
+            <p class="footer-text">Premium organic mushrooms, delivered fresh from farm to your door.</p>
+            <ul class="social-list">
+              <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
+              <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+              <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
+            </ul>
+          </div>
+
+          <ul class="footer-list">
+            <li><p class="footer-list-title">Company</p></li>
+            <li><a href="./shop.html" class="footer-link">Shop</a></li>
+            <li><a href="./blog.html" class="footer-link">Blog</a></li>
+            <li><a href="./contact.html" class="footer-link">Contact Us</a></li>
+          </ul>
+
+          <ul class="footer-list">
+            <li><p class="footer-list-title">Contact</p></li>
+            <li class="footer-item">
+              <div class="contact-icon"><ion-icon name="location-outline"></ion-icon></div>
+              <address class="contact-link">12 Spore Lane, Bengaluru 560001</address>
+            </li>
+            <li class="footer-item">
+              <div class="contact-icon"><ion-icon name="call-outline"></ion-icon></div>
+              <a href="tel:+918001234567" class="contact-link">+91 800 123 4567</a>
+            </li>
+            <li class="footer-item">
+              <div class="contact-icon"><ion-icon name="mail-outline"></ion-icon></div>
+              <a href="mailto:hello@mycomart.in" class="contact-link">hello@mycomart.in</a>
+            </li>
+          </ul>
+
+          <div class="footer-list">
+            <p class="footer-list-title">Newsletter</p>
+            <p class="newsletter-text">Get mushroom tips, recipes, and exclusive deals.</p>
+            <form action="#" class="footer-form" data-newsletter-form>
+              <input type="email" name="email" placeholder="Email Address *" required class="footer-input">
+              <button type="submit" class="footer-form-btn" aria-label="Submit">
+                <ion-icon name="mail-outline"></ion-icon>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p class="copyright">&copy; 2024 <a href="#" class="copyright-link">MycoMart</a>. All Rights Reserved.</p>
+          <ul class="footer-bottom-list">
+            <li><a href="#" class="footer-bottom-link">Terms of Service</a></li>
+            <li><a href="#" class="footer-bottom-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <a href="#top" class="back-to-top" aria-label="Back to Top" data-back-top-btn>
+      <ion-icon name="arrow-up-outline"></ion-icon>
+    </a>
+
+    <script>
+      const productData = {
+        shiitake: {
+          name: "Shiitake Mushroom",
+          price: "₹350.00",
+          summary: "Our Shiitake Premium Pack contains hand-picked, organic shiitake mushrooms grown on natural oak logs. Rich in umami flavour, packed with B vitamins, zinc, and immune-boosting beta-glucans. Perfect for stir-fries, soups, risottos, and grilling.",
+          reviewText: "(4.5 / 5 — 128 reviews)",
+          images: [
+            "../assets/images/Shiitake_Mushroom/shiitake_mushroom_1.png",
+            "../assets/images/Shiitake_Mushroom/shiitake_mushroom_2.png"
+          ],
+          model: "../assets/models/shiitake.glb",
+          descriptionOne: "Grown on natural oak logs in temperature-controlled growing rooms, our Shiitake mushrooms develop their signature meaty texture and deep, savoury flavour. Each pack is harvested at peak maturity and packed within 24 hours of picking to ensure maximum freshness.",
+          descriptionTwo: "Shiitake are one of the most nutritionally dense mushrooms available. A single 100g serving provides 40% of your daily copper needs, significant B6 and B5, plus lentinan known for immune modulation.",
+          meta: {
+            species: "Lentinula edodes",
+            origin: "ForestRoots Farm, Karnataka",
+            rating: "★★★★½ (4.5/5)",
+            certification: "NPOP Organic Certified",
+            shelfLife: "7-10 days refrigerated",
+            storage: "2-8 C, paper bag preferred",
+            seller: "MycoMart"
+          }
+        },
+        oyster: {
+          name: "Oyster Mushroom",
+          price: "₹120.00",
+          summary: "Fresh oyster mushrooms with a soft texture and delicate umami flavor. Great for saute, creamy gravies, and Asian stir-fries.",
+          reviewText: "(4.4 / 5 — 94 reviews)",
+          images: [
+            "../assets/images/Oyster_Mushroom/oyster_mushroom_1.png",
+            "../assets/images/Oyster_Mushroom/oyster_mushroom_2.png"
+          ],
+          model: "../assets/models/oyster.glb",
+          descriptionOne: "Oyster mushrooms cook quickly and absorb seasoning beautifully, making them ideal for weeknight recipes.",
+          descriptionTwo: "They are naturally low in calories and offer useful fiber, B vitamins, and antioxidant compounds.",
+          meta: {
+            species: "Pleurotus ostreatus",
+            origin: "MycoHarvest Unit, Bengaluru",
+            rating: "★★★★☆ (4.4/5)",
+            certification: "Farm Fresh Assured",
+            shelfLife: "4-6 days refrigerated",
+            storage: "2-8 C, breathable pack",
+            seller: "MycoMart"
+          }
+        },
+        button: {
+          name: "Button Mushroom",
+          price: "₹100.00",
+          summary: "Button mushrooms are the everyday kitchen favorite: mild, versatile, and perfect for curries, pasta, and mixed vegetable dishes.",
+          reviewText: "(4.3 / 5 — 176 reviews)",
+          images: [
+            "../assets/images/Button_Mushroom/button_mushroom_1.png",
+            "../assets/images/Button_Mushroom/button_mushroom_2.png"
+          ],
+          model: "../assets/models/button.glb",
+          descriptionOne: "Harvested young for a clean taste and tender texture, this pack is ideal for daily home cooking.",
+          descriptionTwo: "Button mushrooms are a practical source of B vitamins and minerals and work across Indian and continental recipes.",
+          meta: {
+            species: "Agaricus bisporus",
+            origin: "Spore Valley Farm, Karnataka",
+            rating: "★★★★☆ (4.3/5)",
+            certification: "Residue Tested",
+            shelfLife: "4-5 days refrigerated",
+            storage: "Refrigerate in paper bag",
+            seller: "MycoMart"
+          }
+        },
+        enoki: {
+          name: "Enoki Mushroom",
+          price: "₹150.00",
+          summary: "Crisp enoki strands with a mild taste, perfect for soups, ramen, and light stir-fry dishes.",
+          reviewText: "(4.2 / 5 — 72 reviews)",
+          images: [
+            "../assets/images/Enoki_Mushroom/enoki_mushroom_1.png",
+            "../assets/images/Enoki_Mushroom/enoki_mushroom_2.png"
+          ],
+          model: "../assets/models/shiitake.glb",
+          descriptionOne: "Enoki adds crunch and visual appeal to noodle bowls and broths.",
+          descriptionTwo: "Its delicate profile pairs well with soy, garlic, sesame, and light herbs.",
+          meta: {
+            species: "Flammulina velutipes",
+            origin: "Controlled Indoor Grow Lab",
+            rating: "★★★★☆ (4.2/5)",
+            certification: "Farm Fresh Assured",
+            shelfLife: "3-4 days refrigerated",
+            storage: "Keep sealed and chilled",
+            seller: "MycoMart"
+          }
+        },
+        portobello: {
+          name: "Portobello Mushroom",
+          price: "₹300.00",
+          summary: "Large, meaty caps with deep umami flavor, ideal for grilling, stuffing, and burger-style plating.",
+          reviewText: "(4.6 / 5 — 88 reviews)",
+          images: [
+            "../assets/images/Portobello_Mushroom/portobello_mushroom_1.png",
+            "../assets/images/Portobello_Mushroom/portobello_mushroom_2.png"
+          ],
+          model: "../assets/models/shiitake.glb",
+          descriptionOne: "Portobello mushrooms are prized for their dense texture and rich flavor after high-heat cooking.",
+          descriptionTwo: "They can be used as a center-of-plate option in vegetarian mains and fusion dishes.",
+          meta: {
+            species: "Agaricus bisporus (mature)",
+            origin: "Umami Farms, Karnataka",
+            rating: "★★★★½ (4.6/5)",
+            certification: "Premium Batch Selected",
+            shelfLife: "5-6 days refrigerated",
+            storage: "Refrigerate, dry container",
+            seller: "MycoMart"
+          }
+        }
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const key = params.get("item") || "shiitake";
+      const product = productData[key] || productData.shiitake;
+
+      const setText = (id, value) => {
+        const node = document.getElementById(id);
+        if (node) node.textContent = value;
+      };
+
+      setText("breadcrumbCurrent", product.name);
+      setText("productTitle", `${product.name} — Premium Pack`);
+      setText("productPrice", product.price);
+      setText("reviewText", product.reviewText);
+      setText("productSummary", product.summary);
+      setText("descriptionOne", product.descriptionOne);
+      setText("descriptionTwo", product.descriptionTwo);
+
+      setText("metaSpecies", product.meta.species);
+      setText("metaOrigin", product.meta.origin);
+      setText("metaRating", product.meta.rating);
+      setText("metaCertification", product.meta.certification);
+      setText("metaShelfLife", product.meta.shelfLife);
+      setText("metaStorage", product.meta.storage);
+      setText("metaSeller", product.meta.seller);
+
+      document.title = `MycoMart — ${product.name} Premium Pack`;
+
+      const mainImage = document.getElementById("productMainImage");
+      const thumbnailList = document.getElementById("productThumbnailList");
+      const viewer = document.getElementById("productViewer");
+
+      if (mainImage && product.images.length) {
+        mainImage.src = product.images[0];
+        mainImage.alt = product.name;
+      }
+
+      if (viewer) {
+        viewer.src = product.model;
+        viewer.poster = product.images[0];
+        viewer.alt = `${product.name} 3D model`;
+      }
+
+      if (thumbnailList) {
+        thumbnailList.innerHTML = "";
+        product.images.forEach((imageSrc, index) => {
+          const item = document.createElement("li");
+          item.className = `product-thumbnail-item${index === 0 ? " active" : ""}`;
+          item.setAttribute("data-thumbnail", "");
+          item.innerHTML = `<img src="${imageSrc}" width="120" height="100" loading="lazy" alt="${product.name} view ${index + 1}">`;
+          thumbnailList.appendChild(item);
+        });
+      }
+    </script>
+
+    <script src="../assets/js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  </body>
+  </html>
